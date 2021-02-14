@@ -7,7 +7,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//test le constructeur du paquet de carte
+//test le constructeur du paquet de cartes
 class PaquetDeCartesTest
 {
     //  le paquet de carte
@@ -18,7 +18,7 @@ class PaquetDeCartesTest
         System.out.println(p1.toString());
     }
 
-    // test la pioche dans le paquet de carte
+    // test la pioche aléatoire dans le paquet de carte
     @Test
     public void TestPiocheAleatoire()
     {

@@ -5,11 +5,14 @@ import java.util.Random;
 
 public class PaquetDeCartes
 {
-    private static final int TAILLE_PAQUET_CARTE = 60; //Taille du paquet de carte pour un joueur
-    public ArrayList<Integer> paquetDeCartes = new ArrayList<Integer>(TAILLE_PAQUET_CARTE); //Tableau de int représentant
-                                                                                             //le paquet de carte
+    /** Taille du paquet de carte pour un joueur */
+    private static final int TAILLE_PAQUET_CARTE = 60;
+    /** Tableau de int représentant le paquet de cartes */
+    public ArrayList<Integer> paquetDeCartes = new ArrayList<>(TAILLE_PAQUET_CARTE);
 
-
+    /**
+     * constructeur du paquet de cartes
+     */
     public PaquetDeCartes()
     {
         // 2 methodes;
@@ -21,6 +24,10 @@ public class PaquetDeCartes
         }
     }
 
+    /** pioche une carte aleatoirement dans le paquet
+     *
+     * @return le numéro de la carte piochée
+     */
     public int piocher()
     {
         assert(!estVide());
@@ -31,6 +38,13 @@ public class PaquetDeCartes
         return carteAleatoire;
     }
 
+
+     /** pioche la carte à l'indice donné dans le paquet
+      *
+      * @param idx
+      *              l'indice de la carte voulue
+      * @return le numéro de la carte piochée
+      * */
     public int piocher(int idx){
         assert(!estVide() && (idx >= 0 && idx <= paquetDeCartes.size()));
         int carte = paquetDeCartes.get(idx);
@@ -38,12 +52,17 @@ public class PaquetDeCartes
         return carte;
     }
 
+    /**
+     * indique si le paquet est vide
+     */
     public boolean estVide()
     {
         return paquetDeCartes.size() == 0;
     }
 
-
+    /**
+     * retourne la liste des cartes restantes dans le paquet
+     */
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
