@@ -37,10 +37,10 @@ class PaquetDeCartesTest
     public void TestPiocheSpecifique()
     {
         PaquetDeCartes p1 = new PaquetDeCartes();
-        int i=0,j=0;
+        int i=0;
         while(!p1.estVide())
         {
-            int carte = p1.piocher(j);
+            int carte = p1.piocher(0);
             assert(carte >=1 && carte < 61 && i+1==carte);
             i++;
         }
