@@ -1,4 +1,4 @@
-package Joueur;
+package Jeu;
 
 public class Joueur {
 }
