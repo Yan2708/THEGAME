@@ -1,14 +1,14 @@
-package PaquetDeCartes;
+package Composantes;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PaquetDeCartes
-{
-    /** Taille du paquet de carte pour un joueur */
+public class PaquetDeCartes {
+    //Taille du paquet de carte pour un joueur
     private static final int TAILLE_PAQUET_CARTE = 60;
-    /** Tableau de int représentant le paquet de cartes */
-    public ArrayList<Integer> paquetDeCartes = new ArrayList<>(TAILLE_PAQUET_CARTE);
+
+    //Tableau de int représentant le paquet de cartes
+    private final ArrayList<Integer> paquetDeCartes = new ArrayList<>(TAILLE_PAQUET_CARTE);
 
     /**
      * constructeur du paquet de cartes
@@ -61,12 +61,20 @@ public class PaquetDeCartes
     }
 
     /**
+     * renvoie le dernier indice du paquet de carte
+     *
+     * @return le dernier indice de l'ArrayList
+     */
+    public int getLastIdx() {
+        return paquetDeCartes.size()-1;
+    }
+
+    /**
      * retourne la liste des cartes restantes dans le paquet
      *
      * @return la chaine de caractères.
      */
-    public String toString()
-    {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < TAILLE_PAQUET_CARTE; i++) {

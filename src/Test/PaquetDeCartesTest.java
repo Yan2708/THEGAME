@@ -1,11 +1,7 @@
 package Test;
 
-import PaquetDeCartes.PaquetDeCartes;
+import Composantes.PaquetDeCartes;
 import org.junit.jupiter.api.Test;
-
-import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 //  test le constructeur du paquet de cartes
 class PaquetDeCartesTest

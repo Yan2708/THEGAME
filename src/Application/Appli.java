@@ -1,6 +1,6 @@
 package Application;
 
-import PaquetDeCartes.PaquetDeCartes;
+import Composantes.Joueur;
 
 public class Appli {
     public static void main(String[] args) {
