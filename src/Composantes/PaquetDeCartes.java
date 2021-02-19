@@ -13,13 +13,11 @@ public class PaquetDeCartes
     /**
      * constructeur du paquet de cartes
      */
-    public PaquetDeCartes()
-    {
+    public PaquetDeCartes() {
         // 2 methodes;
         // methode realiste : initialiser un paquet avec des valeurs randoms entre 1-60 et unique
         // methode simple : pioche une carte au hasard d'un paquet trié (on prend ca)
-        for (int i = 0; i < TAILLE_PAQUET_CARTE; i++)
-        {
+        for (int i = 0; i < TAILLE_PAQUET_CARTE; i++) {
             paquetDeCartes.add(i, i + 1);
         }
     }
@@ -28,8 +26,7 @@ public class PaquetDeCartes
      *
      * @return le numéro de la carte piochée
      */
-    public int piocher()
-    {
+    public int piocher() {
         assert(!estVide());
         Random rand = new Random();
         int idxAleatoire = rand.nextInt(paquetDeCartes.size());
@@ -43,9 +40,10 @@ public class PaquetDeCartes
       *
       * @param idx
       *              l'indice de la carte voulue
+      *
       * @return le numéro de la carte piochée
       * */
-    public int piocher(int idx){
+    public int piocher(int idx) {
         assert(!estVide() && (idx >= 0 && idx <= paquetDeCartes.size()));
         int carte = paquetDeCartes.get(idx);
         paquetDeCartes.remove(idx);
@@ -54,6 +52,8 @@ public class PaquetDeCartes
 
     /**
      * indique si le paquet est vide
+     *
+     * @return la pile est vide ou non
      */
     public boolean estVide()
     {
@@ -62,13 +62,14 @@ public class PaquetDeCartes
 
     /**
      * retourne la liste des cartes restantes dans le paquet
+     *
+     * @return la chaine de caractères.
      */
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < TAILLE_PAQUET_CARTE; i++)
-        {
+        for (int i = 0; i < TAILLE_PAQUET_CARTE; i++) {
             if(i != 0)
                 sb.append(", ");
             sb.append(paquetDeCartes.get(i));

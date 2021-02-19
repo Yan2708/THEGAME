@@ -7,7 +7,7 @@ import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//test le constructeur du paquet de cartes
+//  test le constructeur du paquet de cartes
 class PaquetDeCartesTest
 {
     //  le paquet de carte
@@ -32,7 +32,7 @@ class PaquetDeCartesTest
     }
 
 
-    //test la pioche specifique (avec un indice donné)
+    //  test la pioche specifique (avec un indice donné)
     @Test
     public void TestPiocheSpecifique()
     {
