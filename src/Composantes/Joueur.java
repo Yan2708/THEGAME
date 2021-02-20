@@ -34,6 +34,31 @@ public class Joueur {
             jeu.add(pioche.piocher());
     }
 
+
+
+
+    public void poserCarte(int carte, Joueur base) {
+        // retirer carte de la main
+        // verifier quelle est dans la main
+        // l'appliquer sur la pile
+        // verifier si on peut la poser
+        // verifier la pile
+             base.ascendant = carte;
+    }
+
+    /**
+     * Vérifie si la carte jouée du joueur est dans sa main.
+     *
+     * @param carte
+     *                  la carte du joueur
+     *
+     * @return la carte est présente ou non
+     *
+     */
+    public boolean estDansLeJeu(int carte) {
+        return jeu.contains(carte);
+    }
+
     /**
      * Créer une chaine de caractères comportant l'ensemble du jeu d'un joueur.
      *

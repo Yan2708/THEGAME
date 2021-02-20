@@ -3,6 +3,9 @@ package Test;
 import Composantes.Joueur;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 // test la classe joueur
 class JoueurTest {
     //  affichage du jeu du joueur
