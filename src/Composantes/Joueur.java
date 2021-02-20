@@ -33,7 +33,7 @@ public class Joueur {
             jeu.add(pioche.piocher());
     }
 
-    /** créer une chaine de caractères comportant l'ensemble de le jeu d'un joueur
+    /** créer une chaine de caractères comportant l'ensemble du jeu d'un joueur
      *
      * @return la chaine de caractères
      *
@@ -55,7 +55,6 @@ public class Joueur {
      *
      */
     public String toString() {
-
         return nom + " ^["+ String.format("%02d", ascendant) + "]"
                 + " v[" + String.format("%02d", descendant) + "]"
                 + " (m" + jeu.size() + "p" + (pioche.getLastIdx() + 1) + ")";
