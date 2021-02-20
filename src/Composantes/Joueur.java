@@ -3,6 +3,7 @@ package Composantes;
 import java.util.ArrayList;
 
 public class Joueur {
+
     // nombre de cartes maximum dans le jeu
     public static final int NB_CARTES_MAX = 6;
     // nom du joueur
@@ -10,13 +11,13 @@ public class Joueur {
     // pioche du joueur
     private PaquetDeCartes pioche;
     // jeu du joueur
-    private ArrayList<Integer> jeu;
+    public ArrayList<Integer> jeu;
     // base du joueur
-    private int ascendant, descendant;
+    public int ascendant, descendant;
 
 
     /**
-     * constructeur du joueur
+     * Constructeur du joueur
      *
      * @param n
      *              le nom du joueur
@@ -33,7 +34,8 @@ public class Joueur {
             jeu.add(pioche.piocher());
     }
 
-    /** créer une chaine de caractères comportant l'ensemble du jeu d'un joueur
+    /**
+     * Créer une chaine de caractères comportant l'ensemble du jeu d'un joueur.
      *
      * @return la chaine de caractères
      *
@@ -48,8 +50,9 @@ public class Joueur {
         return sb.toString();
     }
 
-    /** créer une chaine de ractères comportant le nom du joueur, sa base,
-     * le nombre de carte de son jeu ainsi que le nombre de carte dans sa pioche
+    /**
+     * Créer une chaine de ractères comportant le nom du joueur, sa base,
+     * le nombre de carte de son jeu ainsi que le nombre de carte dans sa pioche.
      *
      * @return la chaine de caractères
      *

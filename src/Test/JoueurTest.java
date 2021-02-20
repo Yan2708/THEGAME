@@ -25,4 +25,26 @@ class JoueurTest {
         Joueur SUD = new Joueur("SUD");
         System.out.println(SUD.toString());
     }
+
+    //
+    @Test
+    void testEstDansLeJeu() {
+        Joueur NORD = new Joueur("NORD");
+        NORD.jeu.set(0, 21);
+        NORD.jeu.set(1, 45);
+        NORD.jeu.set(2, 52);
+        NORD.jeu.set(3, 13);
+        NORD.jeu.set(4, 9);
+        NORD.jeu.set(5, 12);
+        assertTrue(NORD.estDansLeJeu(21));
+        assertTrue(NORD.estDansLeJeu(45));
+        assertTrue(NORD.estDansLeJeu(52));
+        assertTrue(NORD.estDansLeJeu(13));
+        assertTrue(NORD.estDansLeJeu(9));
+        assertTrue(NORD.estDansLeJeu(12));
+        assertFalse(NORD.estDansLeJeu(1));
+        assertFalse(NORD.estDansLeJeu(60));
+        assertFalse(NORD.estDansLeJeu(19));
+    }
+
 }

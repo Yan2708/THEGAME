@@ -22,7 +22,7 @@ public class PaquetDeCartes {
         }
     }
 
-    /** pioche une carte aleatoirement dans le paquet
+    /** Pioche une carte aleatoirement dans le paquet.
      *
      * @return le numéro de la carte piochée
      */
@@ -36,7 +36,7 @@ public class PaquetDeCartes {
     }
 
 
-     /** pioche la carte à l'indice donné dans le paquet
+     /** Pioche la carte à l'indice donné dans le paquet.
       *
       * @param idx
       *              l'indice de la carte voulue
@@ -51,7 +51,7 @@ public class PaquetDeCartes {
     }
 
     /**
-     * indique si le paquet est vide
+     * Indique si le paquet est vide.
      *
      * @return la pile est vide ou non
      */
@@ -61,7 +61,7 @@ public class PaquetDeCartes {
     }
 
     /**
-     * renvoie le dernier indice du paquet de carte
+     * Renvoie le dernier indice du paquet de carte.
      *
      * @return le dernier indice de l'ArrayList
      */
@@ -70,7 +70,7 @@ public class PaquetDeCartes {
     }
 
     /**
-     * retourne la liste des cartes restantes dans le paquet
+     * Renvoie la liste des cartes restantes dans le paquet.
      *
      * @return la chaine de caractères.
      */
