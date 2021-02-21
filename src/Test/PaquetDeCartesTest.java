@@ -8,7 +8,7 @@ class PaquetDeCartesTest
 {
     //  le paquet de carte
     @Test
-    public void Testinitialisation()
+    public void testinitialisation()
     {
         PaquetDeCartes p1 = new PaquetDeCartes();
         System.out.println(p1.toString());
@@ -16,7 +16,7 @@ class PaquetDeCartesTest
 
     // test la pioche aléatoire dans le paquet de carte
     @Test
-    public void TestPiocheAleatoire()
+    public void testPiocheAleatoire()
     {
         PaquetDeCartes p1 = new PaquetDeCartes();
         while(!p1.estVide())
@@ -30,7 +30,7 @@ class PaquetDeCartesTest
 
     //  test la pioche specifique (avec un indice donné)
     @Test
-    public void TestPiocheSpecifique()
+    public void testPiocheSpecifique()
     {
         PaquetDeCartes p1 = new PaquetDeCartes();
         int i=0;

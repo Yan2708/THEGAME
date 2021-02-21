@@ -20,7 +20,7 @@ public class Joueur {
      * Constructeur du joueur
      *
      * @param n
-     *              le nom du joueur
+     *                  le nom du joueur
      */
     public Joueur(String n) {
         nom = n;
