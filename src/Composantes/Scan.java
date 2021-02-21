@@ -1,4 +1,5 @@
 package Composantes;
+
 import java.util.Scanner;
 
 public class Scan {
@@ -32,7 +33,7 @@ public class Scan {
     }
 
     /**
-     * Vérifie le format des coups de l'uttilisateur (non la cohérence).
+     * Vérifie le format des coups de l'utilisateur (non la cohérence).
      *
      * @param s
      *              le coup à vérifier
@@ -47,10 +48,34 @@ public class Scan {
         if(!(s.charAt(2)=='^' || s.charAt(2) == 'v'))
             return false;
         if(s.length()==4)
-            if(!(s.charAt(3)=='\''))
-                return false;
+            return s.charAt(3) == '\'';
         return true;
     }
 
+    /**
+     *  retourne la carte qui est joué par ce coup
+     *  (A utiliser qu'après avoir vérifié que le coup est jouable)
+     *
+     * @param coup
+     *              le coup à jouer
+     *
+     * @return valeur de la carte
+     */
+    public static int getCarte(String coup) {
+        return Integer.parseInt("" + coup.charAt(0)) * 10 + Integer.parseInt("" + coup.charAt(1));
+    }
+
+    /**
+     *  retourne dans quelle base le coup va être joué
+     *  (A utiliser qu'après avoir vérifié que le coup est jouable)
+     *
+     * @param coup
+     *              le coup à jouer
+     *
+     * @return le caractère représentant la base
+     */
+    public static char getBase(String coup) {
+        return coup.charAt(2);
+    }
 
 }

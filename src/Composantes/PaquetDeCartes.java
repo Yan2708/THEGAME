@@ -7,6 +7,8 @@ public class PaquetDeCartes {
     //Taille du paquet de carte pour un joueur
     private static final int TAILLE_PAQUET_CARTE = 60;
 
+
+
     //Tableau de int représentant le paquet de cartes
     private final ArrayList<Integer> paquetDeCartes = new ArrayList<>(TAILLE_PAQUET_CARTE);
 
@@ -50,6 +52,7 @@ public class PaquetDeCartes {
         return carte;
     }
 
+
     /**
      * Indique si le paquet est vide.
      *
@@ -60,6 +63,7 @@ public class PaquetDeCartes {
         return paquetDeCartes.size() == 0;
     }
 
+
     /**
      * Renvoie le dernier indice du paquet de carte.
      *
@@ -69,6 +73,15 @@ public class PaquetDeCartes {
         return paquetDeCartes.size()-1;
     }
 
+
+    /**
+     * Renvoie le nombre de cartes dans le paquet de cartes
+     *
+     * @return le nom de cartes
+     */
+    public int getNbCartes() { return paquetDeCartes.size(); }
+
+
     /**
      * Renvoie la liste des cartes restantes dans le paquet.
      *
@@ -77,7 +90,7 @@ public class PaquetDeCartes {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < TAILLE_PAQUET_CARTE; i++) {
+        for (int i = 0; i < paquetDeCartes.size(); i++) {
             if(i != 0)
                 sb.append(", ");
             sb.append(paquetDeCartes.get(i));

@@ -1,11 +1,12 @@
 package Appli;
 
 import Composantes.Joueur;
+import Composantes.Regles;
 import Composantes.Scan;
 
-import java.util.Scanner;
-
 public class Application {
+
+
 
     public static void main(String[] args) {
         Joueur NORD = new Joueur("NORD");

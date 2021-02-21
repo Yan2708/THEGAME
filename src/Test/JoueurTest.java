@@ -3,16 +3,16 @@ package Test;
 import Composantes.Joueur;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 // test la classe joueur
 class JoueurTest {
+
     //  affichage du jeu du joueur
     //  affichage attendu :
     //  cartes NORD { 09 08 44 47 49 43 }
     @Test
-    void afficherMain() {
+    public void afficherJeu() {
         Joueur NORD = new Joueur("NORD");
         System.out.println(NORD.afficherJeu());
     }
@@ -22,16 +22,16 @@ class JoueurTest {
     //  NORD ^[01] v[60] (m6p52)
     //  SUD ^[01] v[60] (m6p52)
     @Test
-    void testToString() {
+    public void testToString() {
         Joueur NORD = new Joueur("NORD");
         System.out.println(NORD.toString());
         Joueur SUD = new Joueur("SUD");
         System.out.println(SUD.toString());
     }
 
-    //
+    //  test si une carte est dans le jeu
     @Test
-    void testEstDansLeJeu() {
+    public void testEstDansLeJeu() {
         Joueur NORD = new Joueur("NORD");
         NORD.jeu.set(0, 21);
         NORD.jeu.set(1, 45);
@@ -49,5 +49,79 @@ class JoueurTest {
         assertFalse(NORD.estDansLeJeu(60));
         assertFalse(NORD.estDansLeJeu(19));
     }
+
+    //  test de la pioche de carte
+    @Test
+    public void testPiocherCarte(){
+        Joueur NORD = new Joueur("NORD");
+        NORD.piocherCarte();
+        NORD.afficherJeu();
+        NORD.jeu.clear();
+        NORD.piocherCarte();
+        NORD.afficherJeu();
+    }
+
+
+    //  test du getter de nombre de cartes
+    @Test
+    public void testGetNbPioche(){
+        Joueur NORD = new Joueur("NORD");
+        assertEquals(NORD.getNbPioche(), 52);
+        NORD.jeu.clear();
+        while(!NORD.jeuEstPlein())
+            NORD.piocherCarte();
+        assertEquals(NORD.getNbPioche(), 46);
+        while(NORD.getNbPioche()!=0){
+            NORD.jeu.clear();
+            NORD.piocherCarte();
+        }
+        assertEquals(NORD.getNbPioche(), 0);
+    }
+
+    //  test du clone du joueur
+    @Test
+    public void testClone() throws CloneNotSupportedException {
+        Joueur NORD = new Joueur("NORD");
+        Joueur DOPPELGANGER = NORD.clone();
+        assertEquals(NORD.jeu, DOPPELGANGER.jeu);
+        assertEquals(NORD.ascendant, DOPPELGANGER.ascendant);
+        assertEquals(NORD.descendant, DOPPELGANGER.descendant);
+        assertEquals(NORD.nom, DOPPELGANGER.nom);
+        assertEquals(NORD.getNbPioche(), DOPPELGANGER.getNbPioche());
+        //assertEquals(NORD,DOPPELGANGER); ne marche pas car les adresses sont différentes
+    }
+
+    //  test si le jeu est vide
+    @Test
+    public void testJeuEstVide() {
+        Joueur NORD = new Joueur("NORD");
+        assertFalse(NORD.jeuEstVide());
+        NORD.jeu.clear();
+        assertTrue(NORD.jeuEstVide());
+    }
+
+    //  test si le jeu est plein
+    @Test
+    public void testJeuEstPlein() {
+        Joueur NORD = new Joueur("NORD");
+        assertTrue(NORD.jeuEstPlein());
+        NORD.jeu.clear();
+        assertFalse(NORD.jeuEstPlein());
+    }
+
+    @Test
+    public void testPoserCarte() {
+        Joueur NORD = new Joueur("NORD");
+        Joueur SUD = new Joueur("SUD");
+        NORD.jeu.set(0, 23);
+        NORD.jeu.set(1,34);
+        NORD.poserCarte(23, 'v');
+        assertEquals(NORD.descendant, 23);
+        NORD.poserCarte(34, '^', SUD);
+        assertEquals(SUD.ascendant, 34);
+    }
+
+
+
 
 }

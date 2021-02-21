@@ -7,7 +7,7 @@ public class Joueur {
     // nombre de cartes maximum dans le jeu
     public static final int NB_CARTES_MAX = 6;
     // nom du joueur
-    private String nom;
+    public String nom;
     // pioche du joueur
     private PaquetDeCartes pioche;
     // jeu du joueur
@@ -28,23 +28,89 @@ public class Joueur {
         // la pile ascendante est initialisée à 0 et la descendante à 60
         ascendant = pioche.piocher(0);
         descendant = pioche.piocher(pioche.getLastIdx());
-
         jeu = new ArrayList<>();
         for(int i=0; i < NB_CARTES_MAX ; i++) // pioche le jeu du joueur
             jeu.add(pioche.piocher());
     }
 
 
-
-
-    public void poserCarte(int carte, Joueur base) {
-        // retirer carte de la main
-        // verifier quelle est dans la main
-        // l'appliquer sur la pile
-        // verifier si on peut la poser
-        // verifier la pile
-             base.ascendant = carte;
+    /**
+     * Renvoie le nombre de cartes dans la pioche
+     *
+     * @return le nombre de cartes dans la pioche
+     */
+    public int getNbPioche() {
+        return pioche.getNbCartes();
     }
+
+
+    /**
+     * Verifie si le jeu du joueur est vide
+     *
+     * @return si le jeu est vide ou non
+     */
+    public boolean jeuEstVide() {
+        return jeu.isEmpty();
+    }
+
+
+    /**
+     * Verifie si le jeu du joueur est plein
+     *
+     * @return si le jeu est plein ou non
+     */
+    public boolean jeuEstPlein() {
+        return jeu.size() == NB_CARTES_MAX;
+    }
+
+
+    /**
+     * pose une carte donnée sur sa base
+     *
+     * @param carte
+     *                  la carte à poser
+     * @param base
+     *                  la base où l'on va poser la carte
+     */
+    public void poserCarte(int carte, char base) {
+        assert(estDansLeJeu(carte));
+        this.jeu.remove((Integer) carte);
+        if (base == '^')
+            ascendant = carte;
+        else if (base == 'v')
+            descendant = carte;
+    }
+
+
+    /**
+     * pose une carte donnée sur la base du joueur adverse
+     *
+     * @param carte
+     *                  la carte à poser
+     * @param base
+     *                  la base où l'on va poser la carte
+     * @param j
+     *                  le joueur à qui on pose une carte dans sa base
+     */
+    public void poserCarte(int carte, char base, Joueur j) {
+        assert(estDansLeJeu(carte));
+        this.jeu.remove(((Integer) carte));
+        if (base == '^')
+            j.ascendant = carte;
+        else if (base == 'v')
+            j.descendant = carte;
+    }
+
+
+    /**
+     *  pioche une carte dans la pioche et la rajoute dans la main du joueur
+     */
+    public void piocherCarte(){
+        if(!jeuEstPlein()){
+            jeu.add(pioche.piocher());
+        }
+    }
+
 
     /**
      * Vérifie si la carte jouée du joueur est dans sa main.
@@ -88,5 +154,20 @@ public class Joueur {
                 + " (m" + jeu.size() + "p" + (pioche.getLastIdx() + 1) + ")";
     }
 
+
+    /**
+     * crée un clone du joueur
+     *
+     * @return le clone du joueur
+     *
+     */
+    public Joueur clone() throws CloneNotSupportedException{
+        Joueur j = new Joueur(nom);
+        j.jeu = jeu;
+        j.ascendant = ascendant;
+        j.descendant = descendant;
+        j.pioche = pioche;
+        return j;
+    }
 
 }

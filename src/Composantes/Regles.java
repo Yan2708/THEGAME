@@ -80,5 +80,66 @@ public class Regles {
         return false;
     }
 
+    /**
+     * Verifie si un coup joué est destiné au joueur adverse
+     *
+     * @return si le coup est pour le joueur adverse ou non
+     * */
+    public static boolean isCampEnnemie(String coup) {
+        return coup.length() == 4; // si un coup constitue une chaine de 4 caracteres alors il doit etre
+                                   // destiné à l'adversaire car il comprend une apostrophe. exemple : 34v' (4 char)
+    }
+
+    /**
+     *  Verifie si le joueur q posé la totalité de ses cartes
+     *
+     * @return si il n'y a plus de carte à jouer
+     * */
+    public static boolean partieFinie(Joueur j){
+        return (j.jeuEstVide() && j.getNbPioche()==0);
+    }
+
+
+
+    /**
+     *
+     *          /!\ A FAIRE
+     * */
+    public static boolean partieperdue(Joueur j1, Joueur j2){
+        // plutot complexe
+        return false;
+    }
+
+
+    /**
+     *
+     *          /!\ A FAIRE
+     * */
+    public static boolean cartePosable(int carte, char base, Joueur j1, Joueur j2){
+        return estPosable(carte, 'v', j1, j1) || (estPosable(carte, '^', j1, j1))
+                || estPosable(carte, 'v', j1, j2) || estPosable(carte, '^', j1, j2);
+    }
+
+
+
+    /**
+     *  fait piocher un joueur les cartes selon si il a joué chez l'adversaire ou non
+     *
+     * @param jouerAd
+     *              true si le joueur joue chez l'adversaire
+     * @param j
+     *              le joueur qui doit piocher
+     */
+    public static void regleDePioche(boolean jouerAd, Joueur j){
+        if(jouerAd){                //pioche jusqu'à que sa main soit pleine
+            while(!j.jeuEstPlein()){
+                j.piocherCarte();
+            }
+        }else{                  // n'a joué que sur ses bases, pioche 2 cartes
+            for(int i=0; i<2; i++)
+                if(!j.jeuEstPlein())
+                    j.piocherCarte();
+        }
+    }
 
 }
