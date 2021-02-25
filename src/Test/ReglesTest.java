@@ -32,6 +32,13 @@ class ReglesTest {
         assertTrue(Regles.estPosable(40,'v',NORD,NORD));
     }
 
+    //  test la detection d'un coup ennemie
+    @Test
+    public void testIsCampEnnemie() {
+        assertTrue(Regles.isCampEnnemie("34v'"));
+        assertFalse(Regles.isCampEnnemie("34v"));
+    }
+
     //test la possibilité de poser une carte sur une base adverse ou non
     @Test
     public void testJouerCoups() {
@@ -47,11 +54,28 @@ class ReglesTest {
         assertTrue(NORD.descendant == 46);
     }
 
-    //test la verification des coups
+    //test la verification semantique des coups
+    // la syntaxe est bonne, on test seulement la semantique
     @Test
     public void testAreCoupsValid() {
-        // /!\ A FAIRE
+        Joueur NORD = new Joueur("NORD");
+        Joueur SUD = new Joueur("SUD");
+        SUD.jeu.set(0, 12);
+        SUD.jeu.set(1, 39);
+        SUD.jeu.set(2, 46);
+        SUD.jeu.set(3, 59);
+        SUD.jeu.set(4, 22);
+        SUD.jeu.set(5, 14);
+
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^"), SUD, NORD));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^'"), SUD, NORD));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("39^ 12^ 46^"), SUD, NORD));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("12^ 39v' 46^'"), SUD, NORD));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 22v "), SUD, NORD));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 46^'"), SUD, NORD));
     }
+
+
 
     //test la detection de fin de partie pour un joueur
     @Test
@@ -79,4 +103,6 @@ class ReglesTest {
         Regles.regleDePioche(true, NORD);
         assertTrue(NORD.jeuEstPlein());
     }
+
+
 }

@@ -32,12 +32,29 @@ public class ScanTest {
         assertFalse(Scan.inputChecker("21b'"));
     }
 
+
     //  test les fonctions decomposer et inputChecker
     @Test
     public void testInputEtDecomposer() {
         for (String val : Scan.decomposer("12v 39^ 46v' 59^")) {
             assertTrue(Scan.inputChecker(val));
         }
+
+    }
+
+    //  test la syntaxe d'une entrée de joueur
+    @Test
+    public void testIsSyntaxValid() {
+        assertTrue(Scan.isSyntaxValid(Scan.decomposer("12v 15^")));
+        assertTrue(Scan.isSyntaxValid(Scan.decomposer("12v 15v'")));
+        assertTrue(Scan.isSyntaxValid(Scan.decomposer("12v' 15v' 81v 35v")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("une erreur de saisie")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("uneLonguePhrase")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("12v")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("deux elements")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("12 12v")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("12' 32v")));
+        assertFalse(Scan.isSyntaxValid(Scan.decomposer("")));   // une saisie vide
 
     }
 

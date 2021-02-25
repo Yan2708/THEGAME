@@ -65,6 +65,19 @@ public class Joueur {
 
 
     /**
+     *
+     * DESCRIPTION A FAIRE + test
+     *
+     * */
+    public void poserCarte(int carte, char base) {
+        if (base == '^')
+            ascendant = carte;
+        else if (base == 'v')
+            descendant = carte;
+    }
+
+
+    /**
      * pose une carte donnée sur sa base
      *
      * @param carte
@@ -72,13 +85,10 @@ public class Joueur {
      * @param base
      *                  la base où l'on va poser la carte
      */
-    public void poserCarte(int carte, char base) {
+    public void jouerCarte(int carte, char base) {
         assert(estDansLeJeu(carte));
         this.jeu.remove((Integer) carte);
-        if (base == '^')
-            ascendant = carte;
-        else if (base == 'v')
-            descendant = carte;
+        this.poserCarte(carte, base);
     }
 
 
@@ -92,13 +102,10 @@ public class Joueur {
      * @param j
      *                  le joueur à qui on pose une carte dans sa base
      */
-    public void poserCarte(int carte, char base, Joueur j) {
+    public void jouerCarte(int carte, char base, Joueur j) {
         assert(estDansLeJeu(carte));
         this.jeu.remove(((Integer) carte));
-        if (base == '^')
-            j.ascendant = carte;
-        else if (base == 'v')
-            j.descendant = carte;
+        j.poserCarte(carte, base);
     }
 
 
@@ -161,13 +168,8 @@ public class Joueur {
      * @return le clone du joueur
      *
      */
-    public Joueur clone() throws CloneNotSupportedException{
-        Joueur j = new Joueur(nom);
-        j.jeu = jeu;
-        j.ascendant = ascendant;
-        j.descendant = descendant;
-        j.pioche = pioche;
-        return j;
+    public Joueur clone() {
+        return new Joueur(this);
     }
 
 }

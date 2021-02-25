@@ -17,13 +17,17 @@ public class Regles {
     public static void jouerCoups(String[] coups,Joueur j1, Joueur j2) {
         for (String coup: coups) {
             if(isCampEnnemie(coup))
-                j1.poserCarte(Scan.getCarte(coup), Scan.getBase(coup), j2);
-            else j1.poserCarte(Scan.getCarte(coup), Scan.getBase(coup));
+                j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup), j2);
+            else j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup));
         }
     }
 
+
+
     /**
-     * Verifie si les coups du joueur sont jouable.
+     * /!\ A utiliser en partant du principe que la syntaxe est bonne. cf : isSyntaxValid (Scan)
+     *
+     * Verifie si les coups du joueur sont jouable (la semantique).
      *
      * @param coups
      *                  les coups du joueurs
@@ -38,8 +42,33 @@ public class Regles {
      *
      * */
     public static boolean areCoupsValid(String[] coups, Joueur j1, Joueur j2) {
-        // /!\ A FAIRE (SIMULER LES COUPS DU JOUEURS ET RETURN SI UN EST FAUX
-        return false;
+        Joueur j1Bis = j1.clone();  //  on cree deux clones pour simuler les coups du joueur
+        Joueur j2Bis = j2.clone();  //
+        Joueur receveur;
+        int nbCoupAd = 0; // nombres de coups joués chez l'adversaire
+
+        for(String coup : coups) {
+           int carte = Scan.getCarte(coup);
+           char base = Scan.getBase(coup);
+
+           if(!j1.estDansLeJeu(carte)) //si la carte fait partie du jeu ou non
+               return false;
+
+           receveur = isCampEnnemie(coup) ? j2Bis : j1Bis; // le joueur qui reçoit la carte
+           if(estPosable(carte, base, j1Bis, receveur)) {
+               if(isCampEnnemie(coup)) {
+                   if(nbCoupAd >= 1)    // il est possible de jouer qu'une fois chez l'adversaire
+                       return false;
+                   j1Bis.jouerCarte(carte, base, receveur);
+                   nbCoupAd++;
+
+               }
+               else j1Bis.jouerCarte(carte, base);
+           } else return false;
+
+
+        }
+        return true;
     }
 
 
@@ -63,7 +92,6 @@ public class Regles {
      *
      */
     public static boolean estPosable(int carte, char base , Joueur poseur, Joueur receveur){
-
 
         if(receveur.equals(poseur)) {
             if( base == 'v' )

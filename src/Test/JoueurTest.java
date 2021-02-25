@@ -110,14 +110,15 @@ class JoueurTest {
     }
 
     @Test
-    public void testPoserCarte() {
+    public void testJouerCarte() {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
         NORD.jeu.set(0, 23);
         NORD.jeu.set(1,34);
-        NORD.poserCarte(23, 'v');
+        System.out.println(NORD.afficherJeu());
+        NORD.jouerCarte(23, 'v');
         assertEquals(NORD.descendant, 23);
-        NORD.poserCarte(34, '^', SUD);
+        NORD.jouerCarte(34, '^', SUD);
         assertEquals(SUD.ascendant, 34);
     }
 
