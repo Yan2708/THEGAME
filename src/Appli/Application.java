@@ -14,7 +14,7 @@ public class Application {
         Joueur courant = NORD;
         Joueur passif = SUD;
 
-        while(Regles.partieContinue(courant.clone(), passif.clone(), 0)) {
+        while(Regles.partieContinue(courant.clone(), passif.clone(), 0,0)) {
 
             System.out.println(NORD);
             System.out.println(SUD);

@@ -145,7 +145,7 @@ public class Regles {
      * @return si la partie continue ou non
      *
      * */
-    public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb){
+    public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb, int nbCoupAd){
         if(nb>=2)
             return true;
         for(int carte : j1Bis.jeu){
@@ -158,21 +158,26 @@ public class Regles {
             if(estPosable(carte, '^', j1Bis, j1Bis)) {
                 j1Bis.jouerCarte(carte, '^');
                 nb++;
-                if (partieContinue(j1Bis, j2Bis, nb))
+                if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
                     return true;
             }
-            if(estPosable(carte, 'v', j1Bis, j2Bis)) {
-                j1Bis.jouerCarte(carte, 'v', j2Bis);
-                nb++;
-                if (partieContinue(j1Bis, j2Bis, nb))
-                    return true;
-            }
-            if(estPosable(carte, '^', j1Bis, j2Bis)) {
-                j1Bis.jouerCarte(carte, '^', j2Bis);
-                nb++;
-                if (partieContinue(j1Bis, j2Bis, nb))
-                    return true;
-            }
+            if(nbCoupAd < 1){
+                if(estPosable(carte, 'v', j1Bis, j2Bis)) {
+                    j1Bis.jouerCarte(carte, 'v', j2Bis);
+                    nb++;
+                    nbCoupAd++;
+                    if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
+                        return true;
+                }
+                if(estPosable(carte, '^', j1Bis, j2Bis)) {
+                    j1Bis.jouerCarte(carte, '^', j2Bis);
+                    nb++;
+                    nbCoupAd++;
+                    if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
+                        return true;
+                }
+            } else return false;
+
         }
         return false;
     }

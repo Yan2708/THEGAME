@@ -107,7 +107,7 @@ class ReglesTest {
     public void testPartieContinue(){
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
-        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0));
+        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
         for (int i=0; i<Joueur.NB_CARTES_MAX;i++) {
             NORD.jeu.set(i,5);
             SUD.jeu.set(i,5);
@@ -116,7 +116,7 @@ class ReglesTest {
         NORD.descendant=2;
         SUD.ascendant=59;
         SUD.descendant=2;
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0));
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
     }
 
 
