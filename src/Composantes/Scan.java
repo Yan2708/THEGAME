@@ -13,11 +13,10 @@ public class Scan {
     public static String getUsersLine() {
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
+        System.out.print(">");
         String s;
-        System.out.print("> ");
         s = sc.nextLine();
         return s;
-
     }
 
     /**
@@ -52,6 +51,26 @@ public class Scan {
             return s.charAt(3) == '\'';
         return true;
     }
+
+    /**
+     * Verifie si la syntaxe des coups est correcte.
+     *
+     * @param coups
+     *                  les coups du joueurs
+     *
+     * @return les coups ont une syntaxe correcte ou non
+     *
+     * */
+    public static boolean isSyntaxValid(String[] coups){
+        if(coups.length < 2)
+            return false;
+        for (String coup: coups) {
+            if(!Scan.inputChecker(coup))
+                return false;
+        }
+        return true;
+    }
+
 
     /**
      * Verifie si la syntaxe des coups est correcte.

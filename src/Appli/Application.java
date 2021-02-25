@@ -11,16 +11,36 @@ public class Application {
     public static void main(String[] args) {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
-        Joueur jouant = NORD;
+        Joueur courant = NORD;
         Joueur passif = SUD;
-        boolean estFini = true; // /!\ faire une fonction qui detect la fin de la partie
-        while(estFini){
-            NORD.toString();
-            SUD.toString();
+
+        while(Regles.partieContinue(courant.clone(), passif.clone(), 0)) {
+
+            System.out.println(NORD);
+            System.out.println(SUD);
+            System.out.println(courant.afficherJeu());
+
             String[] coups = Scan.decomposer(Scan.getUsersLine());
-            /*while(!Regles.isCoupValid(coups, j1, j2));
-                System.out.println("#> ");
-            Regles.jouerCoups(NORD, SUD);*/
+
+            while(!(Scan.isSyntaxValid(coups)
+                    && Regles.areCoupsValid(coups, courant.clone(), passif.clone()))){
+
+                System.out.print("#");
+                coups = Scan.decomposer(Scan.getUsersLine());
+            }
+
+            Regles.jouerCoups(coups, courant, passif);
+
+            if(courant.equals(NORD)) {
+                courant = SUD;
+                passif = NORD;
+            } else {
+                courant = NORD;
+                passif = SUD;
+            }
+            if(Regles.partieFinie(passif)){
+                break;
+            }
         }
 
     }

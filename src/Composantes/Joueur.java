@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 public class Joueur {
 
-    // nombre de cartes maximum dans le jeu
-    public static final int NB_CARTES_MAX = 6;
-    // nom du joueur
-    public String nom;
-    // pioche du joueur
-    private PaquetDeCartes pioche;
-    // jeu du joueur
-    public ArrayList<Integer> jeu;
-    // base du joueur
-    public int ascendant, descendant;
+    public static final int NB_CARTES_MAX = 6;  // nombre de cartes maximum dans le jeu
+
+    public String nom;  // nom du joueur
+
+    private PaquetDeCartes pioche;  // pioche du joueur
+
+    public ArrayList<Integer> jeu;  // jeu du joueur
+
+    public int ascendant, descendant;   // base du joueur
 
 
     /**

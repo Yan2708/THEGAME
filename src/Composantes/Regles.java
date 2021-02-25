@@ -15,11 +15,15 @@ public class Regles {
      *                  le joueur qui recoit (ou non) les coups
      * */
     public static void jouerCoups(String[] coups,Joueur j1, Joueur j2) {
+        boolean coupAdv = false;
         for (String coup: coups) {
-            if(isCampEnnemie(coup))
+            if(isCampEnnemie(coup)) {
                 j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup), j2);
+                coupAdv = true;
+            }
             else j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup));
         }
+        System.out.println(coups.length + " carte posées, " + regleDePioche(coupAdv, j1) + " cartes piochées");
     }
 
 
@@ -157,17 +161,25 @@ public class Regles {
      *              true si le joueur joue chez l'adversaire
      * @param j
      *              le joueur qui doit piocher
+     *
+     * @return le nombre de carte piochees
      */
     public static void regleDePioche(boolean jouerAd, Joueur j){
         if(jouerAd){                //pioche jusqu'à que sa main soit pleine
             while(!j.jeuEstPlein()){
                 j.piocherCarte();
             }
-        }else{                  // n'a joué que sur ses bases, pioche 2 cartes
-            for(int i=0; i<2; i++)
-                if(!j.jeuEstPlein())
+        } else {                  // n'a joué que sur ses bases, pioche 2 cartes
+            for (int i = 0; i < 2; i++)
+                if (!j.jeuEstPlein()) {
                     j.piocherCarte();
+                    nbCartePioches++;
+                }
         }
+        return nbCartePioches;
     }
 
 }
+
+
+
