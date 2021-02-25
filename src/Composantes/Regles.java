@@ -36,18 +36,16 @@ public class Regles {
      * @param coups
      *                  les coups du joueurs
      *
-     * @param j1
+     * @param j1Bis
      *                  le joueur qui joue les coups
      *
-     * @param j2
+     * @param j2Bis
      *                  le joueur adverse
      *
      * @return si les coups sont valides ou non
      *
      * */
-    public static boolean areCoupsValid(String[] coups, Joueur j1, Joueur j2) {
-        Joueur j1Bis = j1.clone();  //  on cree deux clones pour simuler les coups du joueur
-        Joueur j2Bis = j2.clone();  //
+    public static boolean areCoupsValid(String[] coups, Joueur j1Bis, Joueur j2Bis) {
         Joueur receveur;
         int nbCoupAd = 0; // nombres de coups joués chez l'adversaire
 
@@ -55,7 +53,7 @@ public class Regles {
            int carte = Scan.getCarte(coup);
            char base = Scan.getBase(coup);
 
-           if(!j1.estDansLeJeu(carte)) //si la carte fait partie du jeu ou non
+           if(!j1Bis.estDansLeJeu(carte)) //si la carte fait partie du jeu ou non
                return false;
 
            receveur = isCampEnnemie(coup) ? j2Bis : j1Bis; // le joueur qui reçoit la carte
@@ -96,7 +94,8 @@ public class Regles {
      *
      */
     public static boolean estPosable(int carte, char base , Joueur poseur, Joueur receveur){
-
+        if(!poseur.estDansLeJeu(carte)) //si la carte fait partie du jeu ou non
+            return false;
         if(receveur.equals(poseur)) {
             if( base == 'v' )
                 return receveur.descendant > carte || (receveur.descendant + 10 == carte);    //  dizaine au dessus
@@ -134,23 +133,50 @@ public class Regles {
 
 
     /**
+     * Verifie si il y a au moins 2 combinaisons de cartes possible pour un joueur
      *
-     *          /!\ A FAIRE
+     * @param j1Bis
+     *              le joueur qui doit jouer
+     * @param j2Bis
+     *              le 2ème joueur
+     * @param nb
+     *              le nombre de coups possibles
+     *
+     * @return si la partie continue ou non
+     *
      * */
-    public static boolean partieperdue(Joueur j1, Joueur j2){
-        // plutot complexe
+    public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb){
+        if(nb>=2)
+            return true;
+        for(int carte : j1Bis.jeu){
+            if(estPosable(carte, 'v', j1Bis, j1Bis)) {
+                j1Bis.jouerCarte(carte, 'v');
+                nb++;
+                if (partieContinue(j1Bis, j2Bis, nb))
+                    return true;
+            }
+            if(estPosable(carte, '^', j1Bis, j1Bis)) {
+                j1Bis.jouerCarte(carte, '^');
+                nb++;
+                if (partieContinue(j1Bis, j2Bis, nb))
+                    return true;
+            }
+            if(estPosable(carte, 'v', j1Bis, j2Bis)) {
+                j1Bis.jouerCarte(carte, 'v', j2Bis);
+                nb++;
+                if (partieContinue(j1Bis, j2Bis, nb))
+                    return true;
+            }
+            if(estPosable(carte, '^', j1Bis, j2Bis)) {
+                j1Bis.jouerCarte(carte, '^', j2Bis);
+                nb++;
+                if (partieContinue(j1Bis, j2Bis, nb))
+                    return true;
+            }
+        }
         return false;
     }
 
-
-    /**
-     *
-     *          /!\ A FAIRE
-     * */
-    public static boolean cartePosable(int carte, char base, Joueur j1, Joueur j2){
-        return estPosable(carte, 'v', j1, j1) || (estPosable(carte, '^', j1, j1))
-                || estPosable(carte, 'v', j1, j2) || estPosable(carte, '^', j1, j2);
-    }
 
 
 
@@ -164,10 +190,12 @@ public class Regles {
      *
      * @return le nombre de carte piochees
      */
-    public static void regleDePioche(boolean jouerAd, Joueur j){
-        if(jouerAd){                //pioche jusqu'à que sa main soit pleine
-            while(!j.jeuEstPlein()){
+    public static int regleDePioche(boolean jouerAd, Joueur j) {
+        int nbCartePioches = 0;
+        if (jouerAd) {                //pioche jusqu'à que sa main soit pleine
+            while (!j.jeuEstPlein()) {
                 j.piocherCarte();
+                nbCartePioches++;
             }
         } else {                  // n'a joué que sur ses bases, pioche 2 cartes
             for (int i = 0; i < 2; i++)

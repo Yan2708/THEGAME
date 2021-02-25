@@ -73,26 +73,6 @@ public class Scan {
 
 
     /**
-     * Verifie si la syntaxe des coups est correcte.
-     *
-     * @param coups
-     *                  les coups du joueurs
-     *
-     * @return les coups ont une syntaxe correcte ou non
-     *
-     * */
-    public static boolean isSyntaxValid(String[] coups){
-        if(coups.length < 2)
-            return false;
-        for (String coup: coups) {
-            if(!Scan.inputChecker(coup))
-                return false;
-        }
-        return true;
-    }
-
-
-    /**
      *  retourne la carte qui est joué par ce coup
      *  (A utiliser qu'après avoir vérifié que le coup est jouable)
      *

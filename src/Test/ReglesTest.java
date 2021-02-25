@@ -5,8 +5,6 @@ import Composantes.Regles;
 import Composantes.Scan;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReglesTest {
@@ -67,12 +65,12 @@ class ReglesTest {
         SUD.jeu.set(4, 22);
         SUD.jeu.set(5, 14);
 
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^"), SUD, NORD));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^'"), SUD, NORD));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("39^ 12^ 46^"), SUD, NORD));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("12^ 39v' 46^'"), SUD, NORD));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 22v "), SUD, NORD));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 46^'"), SUD, NORD));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^'"),SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("39^ 12^ 46^"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("12^ 39v' 46^'"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 22v "), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 46^'"), SUD.clone(), NORD.clone()));
     }
 
 
@@ -102,6 +100,23 @@ class ReglesTest {
         NORD.jeu.clear();
         Regles.regleDePioche(true, NORD);
         assertTrue(NORD.jeuEstPlein());
+    }
+
+    //  test de la fonction partieContinue
+    @Test
+    public void testPartieContinue(){
+        Joueur NORD = new Joueur("NORD");
+        Joueur SUD = new Joueur("SUD");
+        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0));
+        for (int i=0; i<Joueur.NB_CARTES_MAX;i++) {
+            NORD.jeu.set(i,5);
+            SUD.jeu.set(i,5);
+        }
+        NORD.ascendant=59;
+        NORD.descendant=2;
+        SUD.ascendant=59;
+        SUD.descendant=2;
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0));
     }
 
 

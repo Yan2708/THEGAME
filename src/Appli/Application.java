@@ -42,6 +42,6 @@ public class Application {
                 break;
             }
         }
-
+        System.out.println("partie finie, " + passif.nom + " a gagné");
     }
 }
