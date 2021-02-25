@@ -109,7 +109,7 @@ public class Regles {
     }
 
     /**
-     * Verifie si un coup joué est destiné au joueur adverse
+     * Verifie si un coup joué est destiné au joueur adverse (utilisé après estPosable)
      *
      * @return si le coup est pour le joueur adverse ou non
      * */

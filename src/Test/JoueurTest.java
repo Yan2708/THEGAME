@@ -80,15 +80,15 @@ class JoueurTest {
 
     //  test du clone du joueur
     @Test
-    public void testClone() throws CloneNotSupportedException {
+    public void testClone() {
         Joueur NORD = new Joueur("NORD");
         Joueur DOPPELGANGER = NORD.clone();
         assertEquals(NORD.jeu, DOPPELGANGER.jeu);
         assertEquals(NORD.ascendant, DOPPELGANGER.ascendant);
         assertEquals(NORD.descendant, DOPPELGANGER.descendant);
-        assertEquals(NORD.nom, DOPPELGANGER.nom);
-        assertEquals(NORD.getNbPioche(), DOPPELGANGER.getNbPioche());
-        //assertEquals(NORD,DOPPELGANGER); ne marche pas car les adresses sont différentes
+        DOPPELGANGER.jeu.set(0,44);
+        DOPPELGANGER.jouerCarte(44,'^');
+        assertNotEquals(NORD.jeu, DOPPELGANGER.jeu);
     }
 
     //  test si le jeu est vide

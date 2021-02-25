@@ -49,9 +49,9 @@ class ReglesTest {
         SUD.jeu.set(2, 46);
         SUD.jeu.set(3, 59);
         Regles.jouerCoups(Scan.decomposer("12v 39^ 46v' 59^"), SUD, NORD);
-        assertTrue(SUD.descendant == 12);
-        assertTrue(SUD.ascendant == 59);
-        assertTrue(NORD.descendant == 46);
+        assertEquals(SUD.descendant, 12);
+        assertEquals(SUD.ascendant, 59);
+        assertEquals(NORD.descendant, 46);
     }
 
     //test la verification semantique des coups
@@ -98,7 +98,7 @@ class ReglesTest {
         Joueur NORD = new Joueur("NORD");
         NORD.jeu.clear();
         Regles.regleDePioche(false, NORD);
-        assertTrue(NORD.jeu.size() == 2);
+        assertEquals(NORD.jeu.size(), 2);
         NORD.jeu.clear();
         Regles.regleDePioche(true, NORD);
         assertTrue(NORD.jeuEstPlein());

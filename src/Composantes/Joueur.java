@@ -33,6 +33,23 @@ public class Joueur {
             jeu.add(pioche.piocher());
     }
 
+    /**
+     * Constructeur d'un clone de joueur
+     *
+     * @param j
+     *                  le joueur à cloner
+     *
+     */
+    public Joueur(Joueur j) {   // clone utilisé que pour la vérification des coups
+        jeu = new ArrayList<>();
+
+        jeu.addAll(j.jeu);    //  duplication en profondeur d'une arrayList
+        ascendant = j.ascendant;
+        descendant = j.descendant;
+        pioche = new PaquetDeCartes();  //   pas besoin de paquet de carte
+        nom = "CLONE";     //   pas besoin de nom
+    }
+
 
     /**
      * Renvoie le nombre de cartes dans la pioche

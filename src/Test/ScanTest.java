@@ -39,6 +39,10 @@ public class ScanTest {
         for (String val : Scan.decomposer("12v 39^ 46v' 59^")) {
             assertTrue(Scan.inputChecker(val));
         }
+        String[] sVide = Scan.decomposer("");
+        assertEquals(sVide.length, 1);
+        for (String val : sVide)
+            assertEquals(val, "");
 
     }
 
