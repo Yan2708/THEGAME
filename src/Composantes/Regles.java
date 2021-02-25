@@ -152,7 +152,7 @@ public class Regles {
             if(estPosable(carte, 'v', j1Bis, j1Bis)) {
                 j1Bis.jouerCarte(carte, 'v');
                 nb++;
-                if (partieContinue(j1Bis, j2Bis, nb))
+                if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
                     return true;
             }
             if(estPosable(carte, '^', j1Bis, j1Bis)) {
