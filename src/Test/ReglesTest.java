@@ -14,18 +14,34 @@ class ReglesTest {
     public void testEstPosable(){
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
+        NORD.jeu.set(0,30);
+        SUD.jeu.set(0,30);
+        SUD.jeu.set(1,1);
+        SUD.jeu.set(2,60);
+
         //  test de coups normaux
         assertTrue(Regles.estPosable(30,'v',NORD,NORD));
         assertTrue(Regles.estPosable(30,'^',NORD,NORD));
-        assertTrue(Regles.estPosable(30,'^',NORD,SUD));
-        assertTrue(Regles.estPosable(30,'v',SUD,NORD));
-        assertFalse(Regles.estPosable(60,'v',SUD,NORD));
-        assertFalse(Regles.estPosable(1,'^',SUD,NORD));
+
+        NORD.descendant=29;
+        NORD.ascendant=31;
+        SUD.descendant=29;
+        SUD.ascendant=31;
+
+        assertTrue(Regles.estPosable(30,'v',NORD,SUD));
+        assertTrue(Regles.estPosable(30,'^',SUD,NORD));
+        assertTrue(Regles.estPosable(60,'v',SUD,NORD));
+        assertTrue(Regles.estPosable(1,'^',SUD,NORD));
+
         //  test de l'exception
         NORD.descendant=30;
         NORD.ascendant=30;
-        assertFalse(Regles.estPosable(20,'^',SUD,NORD));
-        assertFalse(Regles.estPosable(40,'v',SUD,NORD));
+        NORD.jeu.set(0,20);
+        NORD.jeu.set(1,40);
+        SUD.jeu.set(0,20);
+        SUD.jeu.set(1,40);
+        assertFalse(Regles.estPosable(40,'^',SUD,NORD));
+        assertFalse(Regles.estPosable(20,'v',SUD,NORD));
         assertTrue(Regles.estPosable(20,'^',NORD,NORD));
         assertTrue(Regles.estPosable(40,'v',NORD,NORD));
     }
@@ -58,6 +74,12 @@ class ReglesTest {
     public void testAreCoupsValid() {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
+
+        NORD.ascendant=30;      //  les bases sont mis à 30 pour une meilleur manipulation
+        NORD.descendant=30;     //
+        SUD.ascendant=30;       //
+        SUD.descendant=30;      //
+
         SUD.jeu.set(0, 12);
         SUD.jeu.set(1, 39);
         SUD.jeu.set(2, 46);
@@ -119,12 +141,9 @@ class ReglesTest {
         NORD.descendant=2;
         SUD.ascendant=59;
         SUD.descendant=2;
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
-        NORD.jeu.clear();
-        NORD.jeu.add(0,5);
-        NORD.jeu.add(1,6);
-        SUD.descendant=7;
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
+        SUD.ascendant=7;
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
     }
 
 }

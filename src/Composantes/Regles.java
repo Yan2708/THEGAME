@@ -103,7 +103,7 @@ public class Regles {
             if( base == 'v')
                 return receveur.descendant < carte;
             else if( base == '^')
-                return receveur.ascendant < carte;
+                return receveur.ascendant > carte;
         }
         return false;
     }
@@ -141,35 +141,35 @@ public class Regles {
      * @return si la partie continue ou non
      *
      * */
-    public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb, int nbCoupAd){
+    public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb, boolean coupAdv){
         if(nb>=2)
             return true;
         for(int carte : j1Bis.jeu){
             if(estPosable(carte, 'v', j1Bis, j1Bis)) {
                 j1Bis.jouerCarte(carte, 'v');
                 nb++;
-                if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
+                if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                     return true;
             }
             if(estPosable(carte, '^', j1Bis, j1Bis)) {
                 j1Bis.jouerCarte(carte, '^');
                 nb++;
-                if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
+                if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                     return true;
             }
-            if(nbCoupAd < 1){
+            if(!coupAdv){
                 if(estPosable(carte, 'v', j1Bis, j2Bis)) {
                     j1Bis.jouerCarte(carte, 'v', j2Bis);
                     nb++;
-                    nbCoupAd++;
-                    if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
+                    coupAdv=true;
+                    if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                         return true;
                 }
                 if(estPosable(carte, '^', j1Bis, j2Bis)) {
                     j1Bis.jouerCarte(carte, '^', j2Bis);
                     nb++;
-                    nbCoupAd++;
-                    if (partieContinue(j1Bis, j2Bis, nb, nbCoupAd))
+                    coupAdv=true;
+                    if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                         return true;
                 }
             } else return false;
