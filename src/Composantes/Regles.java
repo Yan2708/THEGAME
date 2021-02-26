@@ -1,7 +1,5 @@
 package Composantes;
 
-import java.util.Scanner;
-
 public class Regles {
 
     /**
