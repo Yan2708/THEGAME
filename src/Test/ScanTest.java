@@ -17,38 +17,9 @@ public class ScanTest {
         System.out.println(Arrays.toString(Scan.decomposer("12v 39^ 46v’ 59^")));
     }
 
-    //  Test si les entrées sont valides ou non
-    @Test
-    public void testInputChecker() {
-        assertFalse(Scan.inputChecker("jqhlsdgf"));
-        assertFalse(Scan.inputChecker(""));
-        assertFalse(Scan.inputChecker("1"));
-        assertFalse(Scan.inputChecker("21"));
-        assertFalse(Scan.inputChecker("ds5"));
-        assertTrue(Scan.inputChecker("56v'"));
-        assertTrue(Scan.inputChecker("21v"));
-        assertTrue(Scan.inputChecker("21^"));
-        assertFalse(Scan.inputChecker("21b"));
-        assertTrue(Scan.inputChecker("21^'"));
-        assertFalse(Scan.inputChecker("21v*"));
-        assertFalse(Scan.inputChecker("21b'"));
-    }
-
-
-    //  test les fonctions decomposer et inputChecker
-    @Test
-    public void testInputEtDecomposer() {
-        for (String val : Scan.decomposer("12v 39^ 46v' 59^")) {
-            assertTrue(Scan.inputChecker(val));
-        }
-        String[] sVide = Scan.decomposer("");
-        assertEquals(sVide.length, 1);
-        for (String val : sVide)
-            assertEquals(val, "");
-
-    }
-
-    //  test la syntaxe d'une entrée de joueur
+    /**
+     * Test la syntaxe d'une entrée de joueur.
+     * */
     @Test
     public void testIsSyntaxValid() {
         assertTrue(Scan.isSyntaxValid(Scan.decomposer("12v 15^")));

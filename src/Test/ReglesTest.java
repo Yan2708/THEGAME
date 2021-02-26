@@ -9,50 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReglesTest {
 
-    //  Test si la carte donnée est posable sur la base
-    @Test
-    public void testEstPosable(){
-        Joueur NORD = new Joueur("NORD");
-        Joueur SUD = new Joueur("SUD");
-        NORD.jeu.set(0,30);
-        SUD.jeu.set(0,30);
-        SUD.jeu.set(1,1);
-        SUD.jeu.set(2,60);
-
-        //  test de coups normaux
-        assertTrue(Regles.estPosable(30,'v',NORD,NORD));
-        assertTrue(Regles.estPosable(30,'^',NORD,NORD));
-
-        NORD.descendant=29;
-        NORD.ascendant=31;
-        SUD.descendant=29;
-        SUD.ascendant=31;
-
-        assertTrue(Regles.estPosable(30,'v',NORD,SUD));
-        assertTrue(Regles.estPosable(30,'^',SUD,NORD));
-        assertTrue(Regles.estPosable(60,'v',SUD,NORD));
-        assertTrue(Regles.estPosable(1,'^',SUD,NORD));
-
-        //  test de l'exception
-        NORD.descendant=30;
-        NORD.ascendant=30;
-        NORD.jeu.set(0,20);
-        NORD.jeu.set(1,40);
-        SUD.jeu.set(0,20);
-        SUD.jeu.set(1,40);
-        assertFalse(Regles.estPosable(40,'^',SUD,NORD));
-        assertFalse(Regles.estPosable(20,'v',SUD,NORD));
-        assertTrue(Regles.estPosable(20,'^',NORD,NORD));
-        assertTrue(Regles.estPosable(40,'v',NORD,NORD));
-    }
-
-    //  test la detection d'un coup ennemie
-    @Test
-    public void testIsCampEnnemie() {
-        assertTrue(Regles.isCampEnnemie("34v'"));
-        assertFalse(Regles.isCampEnnemie("34v"));
-    }
-
     /**
      * test la possibilité de poser une carte sur une base adverse ou non
      */
@@ -119,17 +75,7 @@ class ReglesTest {
         assertTrue(Regles.partieFinie(NORD));
     }
 
-    //  test des règles de pioche
-    @Test
-    public void testRegleDePioche() {
-        Joueur NORD = new Joueur("NORD");
-        NORD.jeu.clear();
-        Regles.regleDePioche(false, NORD);
-        assertEquals(NORD.jeu.size(), 2);
-        NORD.jeu.clear();
-        Regles.regleDePioche(true, NORD);
-        assertTrue(NORD.jeuEstPlein());
-    }
+
 
     /**
      * test de la fonction partieContinue
@@ -143,7 +89,6 @@ class ReglesTest {
         NORD.jeu.clear();
         SUD.jeu.clear();
         NORD.jeu.add(0,5);
-        NORD.jeu.add(1,6);
 
         NORD.ascendant=59;
         NORD.descendant=2;

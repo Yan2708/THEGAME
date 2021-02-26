@@ -7,7 +7,7 @@ public class Scan {
     /**
      * Récupère l'entrée de l'uttilisateur, son coup.
      *
-     * @return le coup du joueur
+     * @return les coups du joueur
      *
      * */
     public static String getUsersLine() {
@@ -39,7 +39,7 @@ public class Scan {
      *
      * @return le coup est jouable ou non.
      * */
-    public static boolean inputChecker(String s) {
+    private static boolean inputChecker(String s) {
         if(!(s.length()==4 || s.length()==3))
             return false;
         if(!(Character.isDigit(s.charAt(0)) && Character.isDigit(s.charAt(1))))

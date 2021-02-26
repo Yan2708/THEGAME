@@ -11,12 +11,11 @@ public class Joueur {
 
     public String nom;  // nom du joueur
 
-    private PaquetDeCartes pioche;  // pioche du joueur
-
     public ArrayList<Integer> jeu;  // jeu du joueur
 
     public int ascendant, descendant;   // base du joueur
 
+    private PaquetDeCartes pioche;  // pioche du joueur
 
     /**
      * Constructeur du joueur
@@ -80,6 +79,15 @@ public class Joueur {
         return pioche.estVide();
     }
 
+    /**
+     *  pioche une carte dans la pioche et la rajoute dans la main du joueur
+     */
+    public void piocherCarte(){
+        if(!jeuEstPlein() && !piocheEstVide()){
+            jeu.add(pioche.piocher());
+        }
+    }
+
 
     /**
      * Verifie si le jeu du joueur est vide
@@ -100,6 +108,18 @@ public class Joueur {
         return jeu.size() == NB_CARTES_MAX;
     }
 
+    /**
+     * Vérifie si la carte jouée du joueur est dans sa main.
+     *
+     * @param carte
+     *                  la carte du joueur
+     *
+     * @return la carte est présente ou non
+     *
+     */
+    public boolean estDansLeJeu(int carte) {
+        return jeu.contains(carte);
+    }
 
     /**
      * Pose une carte donné dans une base donné
@@ -118,7 +138,6 @@ public class Joueur {
             descendant = carte;
     }
 
-
     /**
      * pose une carte donnée sur sa base
      *
@@ -132,7 +151,6 @@ public class Joueur {
         this.jeu.remove((Integer) carte);
         this.poserCarte(carte, base);
     }
-
 
     /**
      * pose une carte donnée sur la base du joueur adverse
@@ -150,29 +168,6 @@ public class Joueur {
         j.poserCarte(carte, base);
     }
 
-
-    /**
-     *  pioche une carte dans la pioche et la rajoute dans la main du joueur
-     */
-    public void piocherCarte(){
-        if(!jeuEstPlein() && !piocheEstVide()){
-            jeu.add(pioche.piocher());
-        }
-    }
-
-
-    /**
-     * Vérifie si la carte jouée du joueur est dans sa main.
-     *
-     * @param carte
-     *                  la carte du joueur
-     *
-     * @return la carte est présente ou non
-     *
-     */
-    public boolean estDansLeJeu(int carte) {
-        return jeu.contains(carte);
-    }
 
     /**
      * Créer une chaine de caractères comportant l'ensemble du jeu d'un joueur.

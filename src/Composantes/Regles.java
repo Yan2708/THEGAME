@@ -135,81 +135,31 @@ public class Regles {
         return true;
     }
 
-
     /**
-     * Vérifie si la carte jouée du joueur est posable sur une base donnée
-     * (un joueur peut poser sur sa base et sur la base ennemie).
-     *
-     * @param carte
-     *                  la carte du joueur
-     *
-     * @param base
-     *                  la base du joueur ( 'v' pour descendante et '^' pour ascendante)
-     *
-     * @param poseur
-     *                  le joueur qui pose sa carte
-     *
-     * @param receveur
-     *                  le joueur qui reçoit la carte
-     *
-     * @return si la carte est posable ou non
-     *
-     */
-    public static boolean estPosable(int carte, char base , Joueur poseur, Joueur receveur){
-        if(!poseur.estDansLeJeu(carte)) //si la carte fait partie du jeu ou non
-            return false;
-        if(receveur.equals(poseur)) {
-            if( base == 'v' )
-                return receveur.descendant > carte || (receveur.descendant + 10 == carte);    //  dizaine au dessus
-            else if( base == '^')
-                return receveur.ascendant < carte || (receveur.ascendant - 10) == carte;    //  dizaine en dessous
-        }
-        else {
-            if( base == 'v')
-                return receveur.descendant < carte;
-            else if( base == '^')
-                return receveur.ascendant > carte;
-        }
-        return false;
-    }
-
-    /**
-     * Verifie si un coup joué est destiné au joueur adverse (à utiliser après estPosable)
-     *
-     * @return si le coup est pour le joueur adverse ou non
-     * */
-    private static boolean isCampEnnemie(String coup) {
-        return coup.length() == 4; // si un coup constitue une chaine de 4 caracteres alors il doit etre
-                                   // destiné à l'adversaire car il comprend une apostrophe. exemple : 34v' (4 char)
-    }
-
-    /**
-     *  Verifie si le joueur a posé la totalité de ses cartes.
-     *
-     * @return si il n'y a plus de carte à jouer
-     * */
-    public static boolean partieFinie(Joueur j){
-        return (j.jeuEstVide() && j.getNbPioche()==0);
-    }
-
-
-    /**
-     * Verifie si il y a au moins 2 combinaisons de cartes possible pour un joueur
+     * Methode récursive qui verifie si il y a au moins 2 combinaisons de cartes possible pour un joueur,
+     * /!\ la methode simule et applique les coups à des clones.
      *
      * @param j1Bis
-     *              le joueur qui doit jouer
+     *                  le clone joueur qui doit jouer
      * @param j2Bis
-     *              le 2ème joueur
+     *                  le 2ème clone joueur
      * @param nb
-     *              le nombre de coups possibles
+     *                  le nombre de coups possibles (deux)
+     * @param coupAdv
+     *                  si l'on a déjà joué dans chez l'adversaire ou non
      *
      * @return si la partie continue ou non
      *
+     * @see Joueur#clone()
+     *
      * */
     public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb, boolean coupAdv){
-        if(nb>=2)
+        if(nb>=2)  //  si il y a au moins 2 coups à jouer
             return true;
+        if(j1Bis.jeu.size()==1)
+            return false;
         for(int carte : j1Bis.jeu){
+            //  la vérification commence en jouant les coups possible chez le joueur courant
             if(estPosable(carte, 'v', j1Bis, j1Bis)) {
                 j1Bis.jouerCarte(carte, 'v');
                 nb++;
@@ -222,7 +172,8 @@ public class Regles {
                 if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                     return true;
             }
-            if(!coupAdv){
+
+            if(!coupAdv){ //  si l'on a pas déjà joué chez l'adversaire
                 if(estPosable(carte, 'v', j1Bis, j2Bis)) {
                     j1Bis.jouerCarte(carte, 'v', j2Bis);
                     nb++;
@@ -244,30 +195,22 @@ public class Regles {
     }
 
     /**
-     *  fait piocher un joueur les cartes selon si il a joué chez l'adversaire ou non
+     * Verifie si un coup joué est destiné au joueur adverse (à utiliser après estPosable)
      *
-     * @param jouerAd
-     *              true si le joueur joue chez l'adversaire
-     * @param j
-     *              le joueur qui doit piocher
+     * @return si le coup est pour le joueur adverse ou non
+     * */
+    private static boolean isCampEnnemie(String coup) {
+        return coup.length() == 4; // si un coup constitue une chaine de 4 caracteres alors il doit etre
+                                   // destiné à l'adversaire car il comprend une apostrophe. exemple : 34v' (4 char)
+    }
+
+    /**
+     *  Verifie si le joueur a posé la totalité de ses cartes.
      *
-     * @return le nombre de carte piochees
-     */
-    public static int regleDePioche(boolean jouerAd, Joueur j) {
-        int nbCartePioches = 0;
-        if (jouerAd) {                //pioche jusqu'à que sa main soit pleine
-            while (!j.jeuEstPlein() && !j.piocheEstVide()) {
-                j.piocherCarte();
-                nbCartePioches++;
-            }
-        } else {                  // n'a joué que sur ses bases, pioche 2 cartes
-            for (int i = 0; i < 2; i++)
-                if (!j.jeuEstPlein() && !j.piocheEstVide()) {
-                    j.piocherCarte();
-                    nbCartePioches++;
-                }
-        }
-        return nbCartePioches;
+     * @return si il n'y a plus de carte à jouer
+     * */
+    public static boolean partieFinie(Joueur j){
+        return (j.jeuEstVide() && j.getNbPioche()==0);
     }
 
 }
