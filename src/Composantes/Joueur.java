@@ -138,7 +138,7 @@ public class Joueur {
      *  pioche une carte dans la pioche et la rajoute dans la main du joueur
      */
     public void piocherCarte(){
-        if(!jeuEstPlein()){
+        if(!jeuEstPlein() && !piocheEstVide()){
             jeu.add(pioche.piocher());
         }
     }
