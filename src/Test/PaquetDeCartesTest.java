@@ -41,7 +41,6 @@ class PaquetDeCartesTest
         assertTrue(p1.estVide());
     }
 
-
     //  test si le paquet est vide
     @Test
     public void testGetNbCartes(){
@@ -50,7 +49,6 @@ class PaquetDeCartesTest
         p1.piocher();
         assertEquals(p1.getNbCartes(), 59);
     }
-
 
     //  test le renvoie du dernier index de la liste de carte
     @Test
@@ -76,5 +74,4 @@ class PaquetDeCartesTest
         }
         assert(p1.estVide());
     }
-
 }

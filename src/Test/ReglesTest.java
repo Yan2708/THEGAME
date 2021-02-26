@@ -65,14 +65,17 @@ class ReglesTest {
         SUD.jeu.set(4, 22);
         SUD.jeu.set(5, 14);
 
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^"), SUD.clone(), NORD.clone()));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^'"),SUD.clone(), NORD.clone()));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("39^ 12^ 46^"), SUD.clone(), NORD.clone()));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("12^ 39v' 46^'"), SUD.clone(), NORD.clone()));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 22v "), SUD.clone(), NORD.clone()));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^ 46^'"), SUD.clone(), NORD.clone()));
-    }
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 39^ 46^"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("14v 12v"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^' 39^ 46^"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 39v' 46^"), SUD.clone(), NORD.clone()));
 
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^'"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("14^ 22v'"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("19^ 39v' 46^"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Scan.decomposer("14v' 39v 46^"), SUD.clone(), NORD.clone()));
+
+    }
 
 
     //test la detection de fin de partie pour un joueur
@@ -87,8 +90,6 @@ class ReglesTest {
         }
         assertTrue(Regles.partieFinie(NORD));
     }
-
-
 
     //  test des règles de pioche
     @Test
@@ -107,11 +108,13 @@ class ReglesTest {
     public void testPartieContinue(){
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
-        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
-        for (int i=0; i<Joueur.NB_CARTES_MAX;i++) {
-            NORD.jeu.set(i,5);
-            SUD.jeu.set(i,5);
-        }
+        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
+
+        NORD.jeu.clear();
+        SUD.jeu.clear();
+        NORD.jeu.add(0,5);
+        NORD.jeu.add(1,6);
+
         NORD.ascendant=59;
         NORD.descendant=2;
         SUD.ascendant=59;
@@ -123,6 +126,5 @@ class ReglesTest {
         SUD.descendant=7;
         assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
     }
-
 
 }

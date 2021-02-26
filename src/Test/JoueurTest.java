@@ -121,8 +121,4 @@ class JoueurTest {
         NORD.jouerCarte(34, '^', SUD);
         assertEquals(SUD.ascendant, 34);
     }
-
-
-
-
 }

@@ -44,8 +44,8 @@ public class Regles {
      *
      * */
     public static boolean areCoupsValid(String[] coups, Joueur j1Bis, Joueur j2Bis) {
-        Joueur receveur;
-        int nbCoupAd = 0; // nombres de coups joués chez l'adversaire
+
+        boolean coupAdv = false; // nombres de coups joués chez l'adversaire
 
         for(String coup : coups) {
            int carte = Scan.getCarte(coup);
@@ -54,19 +54,18 @@ public class Regles {
            if(!j1Bis.estDansLeJeu(carte)) //si la carte fait partie du jeu ou non
                return false;
 
-           receveur = isCampEnnemie(coup) ? j2Bis : j1Bis; // le joueur qui reçoit la carte
+           Joueur receveur = isCampEnnemie(coup) ? j2Bis : j1Bis; // le joueur qui reçoit la carte
+
            if(estPosable(carte, base, j1Bis, receveur)) {
                if(isCampEnnemie(coup)) {
-                   if(nbCoupAd >= 1)    // il est possible de jouer qu'une fois chez l'adversaire
+                   if(coupAdv)    // il est possible de jouer qu'une fois chez l'adversaire
                        return false;
                    j1Bis.jouerCarte(carte, base, receveur);
-                   nbCoupAd++;
+                   coupAdv = true;
 
                }
                else j1Bis.jouerCarte(carte, base);
            } else return false;
-
-
         }
         return true;
     }
@@ -102,7 +101,7 @@ public class Regles {
         }
         else {
             if( base == 'v')
-                return receveur.descendant > carte;
+                return receveur.descendant < carte;
             else if( base == '^')
                 return receveur.ascendant < carte;
         }
@@ -127,7 +126,6 @@ public class Regles {
     public static boolean partieFinie(Joueur j){
         return (j.jeuEstVide() && j.getNbPioche()==0);
     }
-
 
 
     /**
@@ -180,9 +178,6 @@ public class Regles {
         return false;
     }
 
-
-
-
     /**
      *  fait piocher un joueur les cartes selon si il a joué chez l'adversaire ou non
      *
@@ -211,6 +206,3 @@ public class Regles {
     }
 
 }
-
-
-
