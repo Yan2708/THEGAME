@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Scan {
 
     /**
-     * récupère l'entrée de l'uttilisateur, son coup.
+     * Récupère l'entrée de l'uttilisateur, son coup.
      *
      * @return le coup du joueur
      *
@@ -28,7 +28,6 @@ public class Scan {
      * @return un tableau de String contenant tous les coups du joueur
      */
     public static String[] decomposer(String UsersLine) {
-        //assert(!UsersLine.isEmpty());
         return UsersLine.split("\\s+");
     }
 
@@ -71,13 +70,12 @@ public class Scan {
         return true;
     }
 
-
     /**
      *  retourne la carte qui est joué par ce coup
      *  (A utiliser qu'après avoir vérifié que le coup est jouable)
      *
      * @param coup
-     *              le coup à jouer
+     *                  le coup à jouer
      *
      * @return valeur de la carte
      */
@@ -87,11 +85,11 @@ public class Scan {
     }
 
     /**
-     *  retourne dans quelle base le coup va être joué
+     *  Retourne dans quelle base le coup va être joué.
      *  (A utiliser qu'après avoir vérifié que le coup est jouable)
      *
      * @param coup
-     *              le coup à jouer
+     *                  le coup à jouer
      *
      * @return le caractère représentant la base
      */

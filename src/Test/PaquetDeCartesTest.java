@@ -6,17 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 //  test le constructeur du paquet de cartes
-class PaquetDeCartesTest
-{
-    //  le paquet de carte
-    @Test
-    public void testinitialisation()
-    {
-        PaquetDeCartes p1 = new PaquetDeCartes();
-        System.out.println(p1.toString());
-    }
+class PaquetDeCartesTest {
 
-    // test la pioche aléatoire dans le paquet de carte
+    /**
+     * Test la pioche aléatoire dans le paquet de carte.
+     * */
     @Test
     public void testPiocheAleatoire()
     {
@@ -29,8 +23,9 @@ class PaquetDeCartesTest
         assert(p1.estVide());
     }
 
-
-    //  test si le paquet est vide
+    /**
+     * Test si le paquet est vide.
+     * */
     @Test
     public void testEstVide(){
         PaquetDeCartes p1 = new PaquetDeCartes();
@@ -41,7 +36,9 @@ class PaquetDeCartesTest
         assertTrue(p1.estVide());
     }
 
-    //  test si le paquet est vide
+    /**
+     * Test si le paquet est vide.
+     * */
     @Test
     public void testGetNbCartes(){
         PaquetDeCartes p1 = new PaquetDeCartes();
@@ -50,7 +47,9 @@ class PaquetDeCartesTest
         assertEquals(p1.getNbCartes(), 59);
     }
 
-    //  test le renvoie du dernier index de la liste de carte
+    /**
+     * Test le renvoie du dernier index de la liste de carte.
+     * */
     @Test
     public void testGetLastIdx(){
         PaquetDeCartes p1 = new PaquetDeCartes();
@@ -60,7 +59,9 @@ class PaquetDeCartesTest
         }
     }
 
-    //  test la pioche specifique (avec un indice donné)
+    /**
+     * Test la pioche specifique (avec un indice donné).
+     * */
     @Test
     public void testPiocheSpecifique()
     {

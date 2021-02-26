@@ -8,19 +8,27 @@ import static org.junit.jupiter.api.Assertions.*;
 // test la classe joueur
 class JoueurTest {
 
-    //  affichage du jeu du joueur
-    //  affichage attendu :
-    //  cartes NORD { 09 08 44 47 49 43 }
+    /**
+     * Test laffichage du jeu du joueur.
+     *
+     * affichage attendu :
+     * cartes NORD { 09 08 44 47 49 43 }
+     *
+     * */
     @Test
     public void afficherJeu() {
         Joueur NORD = new Joueur("NORD");
         System.out.println(NORD.afficherJeu());
     }
 
-    //  test l'affichage de toString et du constructeur
-    //  affichage attendu :
-    //  NORD ^[01] v[60] (m6p52)
-    //  SUD ^[01] v[60] (m6p52)
+    /**
+     * Test l'affichage de toString et du constructeur.
+     *
+     * affichage attendu :
+     * NORD ^[01] v[60] (m6p52)
+     * SUD ^[01] v[60] (m6p52)
+     *
+     * */
     @Test
     public void testToString() {
         Joueur NORD = new Joueur("NORD");
@@ -29,7 +37,9 @@ class JoueurTest {
         System.out.println(SUD.toString());
     }
 
-    //  test si une carte est dans le jeu
+    /**
+     * Test si une carte est dans le jeu.
+     * */
     @Test
     public void testEstDansLeJeu() {
         Joueur NORD = new Joueur("NORD");
@@ -50,7 +60,9 @@ class JoueurTest {
         assertFalse(NORD.estDansLeJeu(19));
     }
 
-    //  test de la pioche de carte
+    /**
+     * Test de la pioche de carte.
+     * */
     @Test
     public void testPiocherCarte(){
         Joueur NORD = new Joueur("NORD");
@@ -61,8 +73,9 @@ class JoueurTest {
         NORD.afficherJeu();
     }
 
-
-    //  test du getter de nombre de cartes
+    /**
+     * Test du getter de nombre de cartes.
+     * */
     @Test
     public void testGetNbPioche(){
         Joueur NORD = new Joueur("NORD");
@@ -78,7 +91,9 @@ class JoueurTest {
         assertEquals(NORD.getNbPioche(), 0);
     }
 
-    //  test du clone du joueur
+    /**
+     * T du clone du joueur.
+     * */
     @Test
     public void testClone() {
         Joueur NORD = new Joueur("NORD");
@@ -91,7 +106,9 @@ class JoueurTest {
         assertNotEquals(NORD.jeu, DOPPELGANGER.jeu);
     }
 
-    //  test si le jeu est vide
+    /**
+     * Test si le jeu est vide.
+     * */
     @Test
     public void testJeuEstVide() {
         Joueur NORD = new Joueur("NORD");
@@ -100,7 +117,9 @@ class JoueurTest {
         assertTrue(NORD.jeuEstVide());
     }
 
-    //  test si le jeu est plein
+    /**
+     * Test si le jeu est plein.
+     * */
     @Test
     public void testJeuEstPlein() {
         Joueur NORD = new Joueur("NORD");
@@ -109,6 +128,9 @@ class JoueurTest {
         assertFalse(NORD.jeuEstPlein());
     }
 
+    /**
+     * Test l'action de jouer une carte.
+     * */
     @Test
     public void testJouerCarte() {
         Joueur NORD = new Joueur("NORD");

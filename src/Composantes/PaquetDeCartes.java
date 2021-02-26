@@ -41,7 +41,7 @@ public class PaquetDeCartes {
      /** Pioche la carte à l'indice donné dans le paquet.
       *
       * @param idx
-      *              l'indice de la carte voulue
+      *                 l'indice de la carte voulue
       *
       * @return le numéro de la carte piochée
       * */
@@ -81,21 +81,4 @@ public class PaquetDeCartes {
      */
     public int getNbCartes() { return paquetDeCartes.size(); }
 
-
-    /**
-     * Renvoie la liste des cartes restantes dans le paquet.
-     *
-     * @return la chaine de caractères.
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < paquetDeCartes.size(); i++) {
-            if(i != 0)
-                sb.append(", ");
-            sb.append(paquetDeCartes.get(i));
-        }
-
-        return sb.toString();
-    }
 }

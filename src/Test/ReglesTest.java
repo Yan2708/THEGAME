@@ -53,7 +53,9 @@ class ReglesTest {
         assertFalse(Regles.isCampEnnemie("34v"));
     }
 
-    //test la possibilité de poser une carte sur une base adverse ou non
+    /**
+     * test la possibilité de poser une carte sur une base adverse ou non
+     */
     @Test
     public void testJouerCoups() {
         Joueur NORD = new Joueur("NORD");
@@ -68,8 +70,11 @@ class ReglesTest {
         assertEquals(NORD.descendant, 46);
     }
 
-    //test la verification semantique des coups
-    // la syntaxe est bonne, on test seulement la semantique
+    /**
+     * test la verification semantique des coups
+     * la syntaxe est bonne, on test seulement la semantique
+     *
+     * */
     @Test
     public void testAreCoupsValid() {
         Joueur NORD = new Joueur("NORD");
@@ -99,8 +104,9 @@ class ReglesTest {
 
     }
 
-
-    //test la detection de fin de partie pour un joueur
+    /**
+     * test la detection de fin de partie pour un joueur
+     * */
     @Test
     public void testPartieFinie() {
         Joueur NORD = new Joueur("NORD");
@@ -125,7 +131,9 @@ class ReglesTest {
         assertTrue(NORD.jeuEstPlein());
     }
 
-    //  test de la fonction partieContinue
+    /**
+     * test de la fonction partieContinue
+     * */
     @Test
     public void testPartieContinue(){
         Joueur NORD = new Joueur("NORD");

@@ -24,7 +24,6 @@ public class Application {
         System.out.println(courant.afficherJeu());
     }
 
-
     public static void main(String[] args) {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");

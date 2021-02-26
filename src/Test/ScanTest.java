@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ScanTest {
 
-    //  Test du décomposeur de ligne
+    /**
+     * Test du décomposeur de ligne.
+     * */
     @Test
     public void testDecomposer() {
         System.out.println(Arrays.toString(Scan.decomposer("12v 39^ 46v’ 59^")));
@@ -59,10 +61,11 @@ public class ScanTest {
         assertFalse(Scan.isSyntaxValid(Scan.decomposer("12 12v")));
         assertFalse(Scan.isSyntaxValid(Scan.decomposer("12' 32v")));
         assertFalse(Scan.isSyntaxValid(Scan.decomposer("")));   // une saisie vide
-
     }
 
-    //  test la recuperation de la carte d'un coup
+    /**
+     * test la recuperation de la carte d'un coup
+     * */
     @Test
     public void testGetCarte() {
         assertEquals(Scan.getCarte("55v"), 55);
@@ -71,7 +74,9 @@ public class ScanTest {
         assertEquals(Scan.getCarte("12^"), 12);
     }
 
-    //  test la recuperation de base d'un coup
+    /**
+     * test la recuperation de base d'un coup
+     * */
     @Test
     void testGetBase() {
         assertEquals(Scan.getBase("55v'"), 'v');

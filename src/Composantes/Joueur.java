@@ -2,6 +2,9 @@ package Composantes;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * */
 public class Joueur {
 
     public static final int NB_CARTES_MAX = 6;  // nombre de cartes maximum dans le jeu
@@ -39,7 +42,7 @@ public class Joueur {
      *                  le joueur à cloner
      *
      */
-    public Joueur(Joueur j) {   // clone utilisé que pour la vérification des coups
+    private Joueur(Joueur j) {   // clone utilisé que pour la vérification des coups
         jeu = new ArrayList<>();
 
         jeu.addAll(j.jeu);    //  duplication en profondeur d'une arrayList
@@ -49,6 +52,15 @@ public class Joueur {
         nom = "CLONE";     //   pas besoin de nom
     }
 
+    /**
+     * crée un clone du joueur
+     *
+     * @return le clone du joueur
+     *
+     */
+    public Joueur clone() {
+        return new Joueur(this);
+    }
 
     /**
      * Renvoie le nombre de cartes dans la pioche
@@ -90,8 +102,13 @@ public class Joueur {
 
 
     /**
+     * Pose une carte donné dans une base donné
      *
-     * DESCRIPTION A FAIRE + test
+     * @param carte
+     *                  la carte donné
+     *
+     * @param base
+     *                  la base dans la quelle il faut jouer
      *
      * */
     public void poserCarte(int carte, char base) {
@@ -187,14 +204,6 @@ public class Joueur {
     }
 
 
-    /**
-     * crée un clone du joueur
-     *
-     * @return le clone du joueur
-     *
-     */
-    public Joueur clone() {
-        return new Joueur(this);
-    }
+
 
 }
