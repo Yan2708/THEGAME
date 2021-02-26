@@ -28,8 +28,9 @@ public class Application {
     public static void main(String[] args) {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
-        Joueur courant = NORD;
-        Joueur passif = SUD;
+
+        Joueur courant = NORD;      //  Références des objets joueurs
+        Joueur passif = SUD;        //
 
         while(Regles.partieContinue(courant.clone(), passif.clone(), 0,false)) {
 
