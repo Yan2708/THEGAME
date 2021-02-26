@@ -198,13 +198,13 @@ public class Regles {
     public static int regleDePioche(boolean jouerAd, Joueur j) {
         int nbCartePioches = 0;
         if (jouerAd) {                //pioche jusqu'à que sa main soit pleine
-            while (!j.jeuEstPlein()) {
+            while (!j.jeuEstPlein() && !j.piocheEstVide()) {
                 j.piocherCarte();
                 nbCartePioches++;
             }
         } else {                  // n'a joué que sur ses bases, pioche 2 cartes
             for (int i = 0; i < 2; i++)
-                if (!j.jeuEstPlein()) {
+                if (!j.jeuEstPlein() && !j.piocheEstVide()) {
                     j.piocherCarte();
                     nbCartePioches++;
                 }

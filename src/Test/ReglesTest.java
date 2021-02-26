@@ -117,6 +117,11 @@ class ReglesTest {
         SUD.ascendant=59;
         SUD.descendant=2;
         assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
+        NORD.jeu.clear();
+        NORD.jeu.add(0,5);
+        NORD.jeu.add(1,6);
+        SUD.descendant=7;
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,0));
     }
 
 

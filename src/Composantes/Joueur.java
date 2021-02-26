@@ -59,6 +59,15 @@ public class Joueur {
         return pioche.getNbCartes();
     }
 
+    /**
+     * Verifie si la pioche du joueur est vide
+     *
+     * @return si la pioche est vide ou non
+     */
+    public boolean piocheEstVide() {
+        return pioche.estVide();
+    }
+
 
     /**
      * Verifie si le jeu du joueur est vide
