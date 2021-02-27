@@ -31,7 +31,7 @@ public class Application {
         Joueur courant = NORD;      //  Références des objets joueurs
         Joueur passif = SUD;        //
 
-        while(Regles.partieContinue(courant.clone(), passif.clone(), 0,false)) {
+        while(Regles.partieContinue(courant, passif, 0,false)) {
 
             showGame(NORD, SUD, courant);
 

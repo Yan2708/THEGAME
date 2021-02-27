@@ -21,7 +21,7 @@ public class Regles {
             }
             else j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup));
         }
-        System.out.println(coups.length + " carte posées, " + regleDePioche(coupAdv, j1) + " cartes piochées");
+        System.out.println(coups.length + " cartes posées, " + regleDePioche(coupAdv, j1) + " cartes piochées");
     }
 
     /**
@@ -139,10 +139,10 @@ public class Regles {
      * Methode récursive qui verifie si il y a au moins 2 combinaisons de cartes possible pour un joueur,
      * /!\ la methode simule et applique les coups à des clones.
      *
-     * @param j1Bis
-     *                  le clone joueur qui doit jouer
-     * @param j2Bis
-     *                  le 2ème clone joueur
+     * @param j1
+     *                  le joueur qui doit jouer
+     * @param j2
+     *                  le 2ème joueur
      * @param nb
      *                  le nombre de coups possibles (deux)
      * @param coupAdv
@@ -153,12 +153,14 @@ public class Regles {
      * @see Joueur#clone()
      *
      * */
-    public static boolean partieContinue(Joueur j1Bis, Joueur j2Bis, int nb, boolean coupAdv){
+    public static boolean partieContinue(Joueur j1, Joueur j2, int nb, boolean coupAdv){
+        Joueur j1Bis = j1.clone();
+        Joueur j2Bis = j2.clone();
         if(nb>=2)  //  si il y a au moins 2 coups à jouer
             return true;
-        if(j1Bis.jeu.size()==1)
-            return false;
         for(int carte : j1Bis.jeu){
+            j1Bis = j1.clone();
+            j2Bis = j2.clone();
             //  la vérification commence en jouant les coups possible chez le joueur courant
             if(estPosable(carte, 'v', j1Bis, j1Bis)) {
                 j1Bis.jouerCarte(carte, 'v');

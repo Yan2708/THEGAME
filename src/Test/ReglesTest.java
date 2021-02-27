@@ -84,19 +84,20 @@ class ReglesTest {
     public void testPartieContinue(){
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
-        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
+        assertTrue(Regles.partieContinue(NORD, SUD, 0,false));
 
         NORD.jeu.clear();
         SUD.jeu.clear();
-        NORD.jeu.add(0,5);
+        NORD.jeu.add(0,59);
+        NORD.jeu.add(1,58);
 
-        NORD.ascendant=59;
+        NORD.ascendant=57;
         NORD.descendant=2;
-        SUD.ascendant=59;
-        SUD.descendant=2;
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
-        SUD.ascendant=7;
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
+        SUD.ascendant=1;
+        SUD.descendant=60;
+        assertTrue(Regles.partieContinue(NORD, SUD, 0,false));
+        NORD.ascendant=58;
+        assertFalse(Regles.partieContinue(NORD, SUD, 0,false));
     }
 
 }

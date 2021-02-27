@@ -13,7 +13,7 @@ public class Scan {
     public static String getUsersLine() {
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print(">");
+        System.out.print("> ");
         String s;
         s = sc.nextLine();
         return s;
