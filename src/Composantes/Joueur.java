@@ -1,7 +1,6 @@
 package Composantes;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -17,7 +16,7 @@ public class Joueur {
 
     public int ascendant, descendant;   // base du joueur
 
-    private PaquetDeCartes pioche;  // pioche du joueur
+    private final PaquetDeCartes pioche;  // pioche du joueur
 
     /**
      * Constructeur du joueur
@@ -181,9 +180,9 @@ public class Joueur {
      */
     public String afficherJeu(){
         StringBuilder sb = new StringBuilder();
-        sb.append("cartes " + nom + " { ");
+        sb.append("cartes ").append(nom).append(" { ");
         for(Integer carte : jeu){
-            sb.append(String.format("%02d",carte) + " ");
+            sb.append(String.format("%02d", carte)).append(" ");
         }
         sb.append("}");
         return sb.toString();
