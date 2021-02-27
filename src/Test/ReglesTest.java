@@ -98,6 +98,17 @@ class ReglesTest {
         assertTrue(Regles.partieContinue(NORD, SUD, 0,false));
         NORD.ascendant=58;
         assertFalse(Regles.partieContinue(NORD, SUD, 0,false));
+        NORD.ascendant=49;
+        NORD.descendant=2;
+        SUD.ascendant=53;
+        SUD.descendant=9;
+        SUD.jeu.add(0,34);
+        SUD.jeu.add(1,44);
+        SUD.jeu.add(2,38);
+        SUD.jeu.add(3,6);
+        SUD.jeu.add(4,41);
+        SUD.jeu.add(5,39);
+        assertTrue(Regles.partieContinue(SUD, NORD, 0, false));
     }
 
 }

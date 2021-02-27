@@ -1,6 +1,8 @@
 package Composantes;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -31,7 +33,8 @@ public class Joueur {
         descendant = pioche.piocher(pioche.getLastIdx());
         jeu = new ArrayList<>();
         for(int i=0; i < NB_CARTES_MAX ; i++) // pioche le jeu du joueur
-            jeu.add(pioche.piocher());
+            piocherCarte();
+
     }
 
     /**
@@ -86,6 +89,7 @@ public class Joueur {
         if(!jeuEstPlein() && !piocheEstVide()){
             jeu.add(pioche.piocher());
         }
+        Collections.sort(jeu);
     }
 
 

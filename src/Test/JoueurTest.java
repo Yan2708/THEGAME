@@ -67,10 +67,12 @@ class JoueurTest {
     public void testPiocherCarte(){
         Joueur NORD = new Joueur("NORD");
         NORD.piocherCarte();
-        NORD.afficherJeu();
+        System.out.println( NORD.afficherJeu());
         NORD.jeu.clear();
         NORD.piocherCarte();
-        NORD.afficherJeu();
+        System.out.println( NORD.afficherJeu());
+        NORD.piocherCarte();
+        System.out.println( NORD.afficherJeu());
     }
 
     /**

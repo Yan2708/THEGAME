@@ -182,6 +182,8 @@ public class Regles {
                     coupAdv=true;
                     if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                         return true;
+                    else
+                        coupAdv=false;
                 }
                 if(estPosable(carte, '^', j1Bis, j2Bis)) {
                     j1Bis.jouerCarte(carte, '^', j2Bis);
@@ -189,6 +191,8 @@ public class Regles {
                     coupAdv=true;
                     if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                         return true;
+                    else
+                        coupAdv=false;
                 }
             } else return false;
 
