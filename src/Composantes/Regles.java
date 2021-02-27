@@ -16,10 +16,10 @@ public class Regles {
         boolean coupAdv = false;
         for (String coup: coups) {
             if(isCampEnnemie(coup)) {
-                j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup), j2);
+                j1.jouerCarte(Input.getCarte(coup), Input.getBase(coup), j2);
                 coupAdv = true;
             }
-            else j1.jouerCarte(Scan.getCarte(coup), Scan.getBase(coup));
+            else j1.jouerCarte(Input.getCarte(coup), Input.getBase(coup));
         }
         System.out.println(coups.length + " cartes posées, " + regleDePioche(coupAdv, j1) + " cartes piochées");
     }
@@ -105,7 +105,7 @@ public class Regles {
      * @return si les coups sont valides ou non
      *
      * @see Joueur#clone()
-     * @see Scan#isSyntaxValid(String[])
+     * @see Input#isSyntaxValid(String[])
      *
      * */
     public static boolean areCoupsValid(String[] coups, Joueur j1Bis, Joueur j2Bis) {
@@ -113,8 +113,8 @@ public class Regles {
         boolean coupAdv = false; // vérifie si un coups a été joué chez l'adversaire
 
         for(String coup : coups) {
-           int carte = Scan.getCarte(coup);
-           char base = Scan.getBase(coup);
+           int carte = Input.getCarte(coup);
+           char base = Input.getBase(coup);
 
            if(!j1Bis.estDansLeJeu(carte))
                return false;

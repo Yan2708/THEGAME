@@ -2,7 +2,7 @@ package Test;
 
 import Composantes.Joueur;
 import Composantes.Regles;
-import Composantes.Scan;
+import Composantes.Input;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ class ReglesTest {
         SUD.jeu.set(1, 39);
         SUD.jeu.set(2, 46);
         SUD.jeu.set(3, 59);
-        Regles.jouerCoups(Scan.decomposer("12v 39^ 46v' 59^"), SUD, NORD);
+        Regles.jouerCoups(Input.decomposer("12v 39^ 46v' 59^"), SUD, NORD);
         assertEquals(SUD.descendant, 12);
         assertEquals(SUD.ascendant, 59);
         assertEquals(NORD.descendant, 46);
@@ -48,15 +48,15 @@ class ReglesTest {
         SUD.jeu.set(4, 22);
         SUD.jeu.set(5, 14);
 
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 39^ 46^"), SUD.clone(), NORD.clone()));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("14v 12v"), SUD.clone(), NORD.clone()));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12^' 39^ 46^"), SUD.clone(), NORD.clone()));
-        assertTrue(Regles.areCoupsValid(Scan.decomposer("12v 39v' 46^"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Input.decomposer("12v 39^ 46^"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Input.decomposer("14v 12v"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Input.decomposer("12^' 39^ 46^"), SUD.clone(), NORD.clone()));
+        assertTrue(Regles.areCoupsValid(Input.decomposer("12v 39v' 46^"), SUD.clone(), NORD.clone()));
 
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("12^ 39v 46^'"), SUD.clone(), NORD.clone()));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("14^ 22v'"), SUD.clone(), NORD.clone()));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("19^ 39v' 46^"), SUD.clone(), NORD.clone()));
-        assertFalse(Regles.areCoupsValid(Scan.decomposer("14v' 39v 46^"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Input.decomposer("12^ 39v 46^'"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Input.decomposer("14^ 22v'"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Input.decomposer("19^ 39v' 46^"), SUD.clone(), NORD.clone()));
+        assertFalse(Regles.areCoupsValid(Input.decomposer("14v' 39v 46^"), SUD.clone(), NORD.clone()));
 
     }
 

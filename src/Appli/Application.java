@@ -2,7 +2,7 @@ package Appli;
 
 import Composantes.Joueur;
 import Composantes.Regles;
-import Composantes.Scan;
+import Composantes.Input;
 
 public class Application {
 
@@ -35,13 +35,13 @@ public class Application {
 
             showGame(NORD, SUD, courant);
 
-            String[] coups = Scan.decomposer(Scan.getUsersLine());
+            String[] coups = Input.decomposer(Input.getUsersLine());
 
-            while(!(Scan.isSyntaxValid(coups)
+            while(!(Input.isSyntaxValid(coups)
                     && Regles.areCoupsValid(coups, courant.clone(), passif.clone()))){
 
                 System.out.print("#");
-                coups = Scan.decomposer(Scan.getUsersLine());
+                coups = Input.decomposer(Input.getUsersLine());
             }
 
             Regles.jouerCoups(coups, courant, passif);
