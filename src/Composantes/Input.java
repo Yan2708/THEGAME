@@ -36,12 +36,12 @@ public class Input {
     /**
      * Décompose les différents coups d'un joueur.
      * Cette méthode utilise la méthode Split de la classe String qui permet de séparer
-     * une chaîne de caractère en fragment stocké par la suite dans un tableau de String,
+     * une chaîne de caractères en fragment stocké par la suite dans un tableau de String,
      * ici on sépare avec un regex nous permettant d'obtenir séparément chaque coup de l'utilisateur ("\\s+").
      *
      * @param UsersLine     le String à décomposer (l'entrée de l'uttilisateur).
      * @return              un tableau de String contenant tous les coups du joueur
-     * @see String#split(String) 
+     * @see                 String#split(String)
      */
     public static String[] decomposer(String UsersLine) {
         return UsersLine.split("\\s+");
@@ -54,7 +54,7 @@ public class Input {
      * enfin, si l'utilisateur joue son coup chez l'adversaire
      * le quatrième caractère doit être "\'" (une apostrophe)
      *
-     * @param s             la chaine de caractère à vérifier.
+     * @param s             la chaine de caractères à vérifier.
      * @return              le coup est jouable ou non.
      * @see                 Character#isDigit(char)
      * */
@@ -89,7 +89,7 @@ public class Input {
     }
 
     /**
-     * Retourne la carte qui est joué dans la chaine de caractère.
+     * Retourne la carte qui est joué dans la chaine de caractères.
      * Cette methode est à utiliser qu'après avoir vérifié que le coup est jouable.
      * De plus, elle utilise la méthode substring pour faire une sous chaîne de caractère
      * contenant les caractères allant jusqu'à un certain indice.
@@ -100,13 +100,13 @@ public class Input {
      * @see                 Integer#parseInt(String)
      */
     public static int getCarte(String coup) {
-        return Integer.parseInt(coup.substring(0, 2), 10); //   substring creer une sous chaine de caractere
+        return Integer.parseInt(coup.substring(0, 2), 10); //   substring creer une sous chaine de caracteres
                                                                 //   parseInt renvoie un entier en base 10 (radix)
     }
 
     /**
-     *  Retourne dans quelle base le coup va être joué.
-     *  Cette méthode est à utiliser qu'après avoir vérifié que le coup est jouable
+     * Retourne dans quelle base le coup va être joué.
+     * Cette méthode est à utiliser qu'après avoir vérifié que le coup est jouable
      *
      * @param coup          le coup à jouer, sous la forme de String.
      * @return              le caractère représentant la base ("^" ou "v").

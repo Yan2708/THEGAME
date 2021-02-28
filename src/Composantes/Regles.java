@@ -1,16 +1,23 @@
 package Composantes;
-
+/**
+ * Les règles sont un ensemble d'instructions établi pour conditionner le bon déroulement d'un jeu.
+ * Ils établissent les facultés et les contraintes qui sont présentées
+ * à chaque joueur et doivent être clairement énoncées à chacun d'eux avant le début de la partie.
+ * Il s'agit ici de reguler la sémantique des coups de l'uttilisateur.
+ *
+ * @author Yannick li
+ * @author Stefan Radovanovic
+ * @version 1, 2/27/2021
+ * */
 public class Regles {
+
 
     /**
      * Joue les coups d'un joueur.
      *
-     * @param coups
-     *                  les coups du joueurs
-     * @param j1
-     *                  le joueur qui joue les coups
-     * @param j2
-     *                  le joueur qui recoit (ou non) les coups
+     * @param coups         les coups du joueurs, sous la forme d'un tableau de String
+     * @param j1            le joueur qui joue les coups.
+     * @param j2            le joueur qui recoit (ou non) les coups.
      * */
     public static void jouerCoups(String[] coups,Joueur j1, Joueur j2) {
         boolean coupAdv = false;
@@ -24,15 +31,13 @@ public class Regles {
         System.out.println(coups.length + " cartes posées, " + regleDePioche(coupAdv, j1) + " cartes piochées");
     }
 
+
     /**
      *  Fait piocher un joueur les cartes selon si il a joué chez l'adversaire ou non.
      *
-     * @param jouerAd
-     *                  true si le joueur joue chez l'adversaire
-     * @param j
-     *                  le joueur qui doit piocher
-     *
-     * @return le nombre de carte piochees
+     * @param jouerAd       true si le joueur joue chez l'adversaire
+     * @param j             le joueur qui doit piocher
+     * @return              le nombre de carte piochées
      */
     private static int regleDePioche(boolean jouerAd, Joueur j) {
         int nbCartePioches = 0;
@@ -51,24 +56,20 @@ public class Regles {
         return nbCartePioches;
     }
 
+
     /**
-     * Vérifie si la carte jouée du joueur est posable sur une base donnée
-     * (un joueur peut poser sur sa base et sur la base ennemie).
+     * Vérifie si la carte jouée du joueur est posable sur une base donnée.
+     * Conformemant aux regles du jeu, un joueur peux poser sur :
+     * - sa base ascendante, si la carte est supérieure ou est egale à la dizaine du dessous.
+     * - sa base descendante, si la carte est inférieur ou est egale à la dizaine du dessus.
+     * - la base ascendante adverse, si la carte est inférieur.
+     * - la base descendante adverse, si la carte est supérieur.
      *
-     * @param carte
-     *                  la carte du joueur
-     *
-     * @param base
-     *                  la base du joueur ( 'v' pour descendante et '^' pour ascendante)
-     *
-     * @param poseur
-     *                  le joueur qui pose sa carte
-     *
-     * @param receveur
-     *                  le joueur qui reçoit la carte
-     *
-     * @return si la carte est posable ou non
-     *
+     * @param carte         la carte du joueur
+     * @param base          la base choisie ( 'v' pour descendante et '^' pour ascendante)
+     * @param poseur        le joueur qui pose sa carte
+     * @param receveur      le joueur qui reçoit la carte
+     * @return              si la carte est posable ou non
      */
     private static boolean estPosable(int carte, char base , Joueur poseur, Joueur receveur){
         if(!poseur.estDansLeJeu(carte)) //  si la carte fait partie du jeu ou non
@@ -88,25 +89,19 @@ public class Regles {
         return false;
     }
 
+
     /**
+     * Verifie si les coups du joueur sont jouable (la sémantique).
      * /!\ A utiliser en partant du principe que la syntaxe est bonne.
      * /!\ la methode simule et applique les coups à des clones.
-     * Verifie si les coups du joueur sont jouable (la sémantique).
+     * cad qu'il faut mettre en parametre des clones.
      *
-     * @param coups
-     *                  les coups du joueurs
-     *
-     * @param j1Bis
-     *                  le joueur qui joue les coups
-     *
-     * @param j2Bis
-     *                  le joueur adverse
-     *
-     * @return si les coups sont valides ou non
-     *
+     * @param coups         les coups du joueurs
+     * @param j1Bis         le joueur qui joue les coups
+     * @param j2Bis         le joueur adverse
+     * @return              si les coups sont valides ou non
      * @see Joueur#clone()
      * @see Input#isSyntaxValid(String[])
-     *
      * */
     public static boolean areCoupsValid(String[] coups, Joueur j1Bis, Joueur j2Bis) {
 
@@ -135,23 +130,18 @@ public class Regles {
         return true;
     }
 
+
     /**
-     * Methode récursive qui verifie si il y a au moins 2 combinaisons de cartes possible pour un joueur,
+     * Methode récursive qui verifie si il y a au moins 2 combinaisons de cartes possible pour un joueur.
+     * L'algorithme simule une partie avec les combinaisons courantes (base, carte en main etc).
      * /!\ la methode simule et applique les coups à des clones.
      *
-     * @param j1
-     *                  le joueur qui doit jouer
-     * @param j2
-     *                  le 2ème joueur
-     * @param nb
-     *                  le nombre de coups possibles (deux)
-     * @param coupAdv
-     *                  si l'on a déjà joué dans chez l'adversaire ou non
-     *
-     * @return si la partie continue ou non
-     *
-     * @see Joueur#clone()
-     *
+     * @param j1            le joueur qui doit jouer
+     * @param j2            le 2ème joueur
+     * @param nb            le nombre de coups possibles (deux)
+     * @param coupAdv       si l'on a déjà joué dans chez l'adversaire ou non
+     * @return              si la partie continue ou non
+     * @see                 Joueur#clone()
      * */
     public static boolean partieContinue(Joueur j1, Joueur j2, int nb, boolean coupAdv){
         Joueur j1Bis = j1.clone();
@@ -159,6 +149,7 @@ public class Regles {
         if(nb>=2)  //  si il y a au moins 2 coups à jouer
             return true;
         for(int carte : j1Bis.jeu){
+            // A chaque carte jouée
             j1Bis = j1.clone();
             j2Bis = j2.clone();
             //  la vérification commence en jouant les coups possible chez le joueur courant
@@ -174,7 +165,7 @@ public class Regles {
                 if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                     return true;
             }
-
+            //  verification chez le joueur adverse
             if(!coupAdv){ //  si l'on a pas déjà joué chez l'adversaire
                 if(estPosable(carte, 'v', j1Bis, j2Bis)) {
                     j1Bis.jouerCarte(carte, 'v', j2Bis);
@@ -203,7 +194,7 @@ public class Regles {
     /**
      * Verifie si un coup joué est destiné au joueur adverse (à utiliser après estPosable)
      *
-     * @return si le coup est pour le joueur adverse ou non
+     * @return              si le coup est pour le joueur adverse ou non
      * */
     private static boolean isCampEnnemie(String coup) {
         return coup.length() == 4; // si un coup constitue une chaine de 4 caracteres alors il doit etre
@@ -213,7 +204,7 @@ public class Regles {
     /**
      *  Verifie si le joueur a posé la totalité de ses cartes.
      *
-     * @return si il n'y a plus de carte à jouer
+     * @return              si il n'y a plus de carte à jouer
      * */
     public static boolean partieFinie(Joueur j){
         return (j.jeuEstVide() && j.getNbPioche()==0);

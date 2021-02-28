@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
+ * Le jouer est une représentation de l'utilisateur.
+ * Il possède un nom ("NORD" ou "SUD").
+ * Un jeu de cartes.
+ * Une pile ascendante et descendante (la base).
+ * Un paquet de cartes, la pioche.
+ * Il s'agit ici de manœuvrer le joueur en fonction de l'utilisateur et de ce qu'il décide.
  *
+ * @author Yannick li
+ * @author Stefan Radovanovic
+ * @version 1, 2/27/2021
  * */
 public class Joueur {
 
@@ -18,11 +27,11 @@ public class Joueur {
 
     private final PaquetDeCartes pioche;  // pioche du joueur
 
+
     /**
      * Constructeur du joueur
      *
-     * @param n
-     *                  le nom du joueur
+     * @param n             le nom du joueur, sous une chaîne de caractères.
      */
     public Joueur(String n) {
         nom = n;
@@ -36,12 +45,13 @@ public class Joueur {
 
     }
 
+
     /**
-     * Constructeur d'un clone de joueur
+     * Constructeur d'un clone de joueur.
+     * Ce constructeur permet de recopier les données d'un joueur
+     * afin de les manipuler sans incidence avec le vrai Joueur (l'utilisateur).
      *
-     * @param j
-     *                  le joueur à cloner
-     *
+     * @param j             le joueur à cloner.
      */
     private Joueur(Joueur j) {   // clone utilisé que pour la vérification des coups
         jeu = new ArrayList<>();
@@ -53,36 +63,39 @@ public class Joueur {
         nom = "CLONE";     //   pas besoin de nom
     }
 
+
     /**
      * crée un clone du joueur
      *
-     * @return le clone du joueur
-     *
+     * @return              le clone du joueur
      */
     public Joueur clone() {
         return new Joueur(this);
     }
 
+
     /**
      * Renvoie le nombre de cartes dans la pioche
      *
-     * @return le nombre de cartes dans la pioche
+     * @return              le nombre de cartes dans la pioche
      */
     public int getNbPioche() {
         return pioche.getNbCartes();
     }
 
+
     /**
      * Verifie si la pioche du joueur est vide
      *
-     * @return si la pioche est vide ou non
+     * @return              si la pioche est vide ou non
      */
     public boolean piocheEstVide() {
         return pioche.estVide();
     }
 
+
     /**
-     *  pioche une carte dans la pioche et la rajoute dans la main du joueur
+     *  Pioche une carte dans la pioche et la rajoute dans le jeu du joueur.
      */
     public void piocherCarte(){
         if(!jeuEstPlein() && !piocheEstVide()){
@@ -93,9 +106,9 @@ public class Joueur {
 
 
     /**
-     * Verifie si le jeu du joueur est vide
+     * Vérifie si le jeu du joueur est vide
      *
-     * @return si le jeu est vide ou non
+     * @return              si le jeu est vide ou non
      */
     public boolean jeuEstVide() {
         return jeu.isEmpty();
@@ -103,36 +116,31 @@ public class Joueur {
 
 
     /**
-     * Verifie si le jeu du joueur est plein
+     * Vérifie si le jeu du joueur est plein.
      *
-     * @return si le jeu est plein ou non
+     * @return              si le jeu est plein ou non.
      */
     public boolean jeuEstPlein() {
         return jeu.size() == NB_CARTES_MAX;
     }
 
+
     /**
      * Vérifie si la carte jouée du joueur est dans sa main.
      *
-     * @param carte
-     *                  la carte du joueur
-     *
-     * @return la carte est présente ou non
-     *
+     * @param carte         la carte du joueur.
+     * @return              la carte est présente ou non.
      */
     public boolean estDansLeJeu(int carte) {
         return jeu.contains(carte);
     }
 
+
     /**
-     * Pose une carte donné dans une base donné
+     * Pose une carte donnée dans une base donnée.
      *
-     * @param carte
-     *                  la carte donné
-     *
-     * @param base
-     *                  la base dans la quelle il faut jouer
-     *
+     * @param carte         la carte donné.
+     * @param base          la base dans la quelle il faut jouer.
      * */
     public void poserCarte(int carte, char base) {
         if (base == '^')
@@ -141,13 +149,12 @@ public class Joueur {
             descendant = carte;
     }
 
+
     /**
-     * pose une carte donnée sur sa base
+     * pose une carte donnée sur sa base.
      *
-     * @param carte
-     *                  la carte à poser
-     * @param base
-     *                  la base où l'on va poser la carte
+     * @param carte         la carte à poser.
+     * @param base          la base où l'on va poser la carte.
      */
     public void jouerCarte(int carte, char base) {
         assert(estDansLeJeu(carte));
@@ -155,15 +162,13 @@ public class Joueur {
         this.poserCarte(carte, base);
     }
 
+
     /**
      * pose une carte donnée sur la base du joueur adverse
      *
-     * @param carte
-     *                  la carte à poser
-     * @param base
-     *                  la base où l'on va poser la carte
-     * @param j
-     *                  le joueur à qui on pose une carte dans sa base
+     * @param carte         la carte à poser
+     * @param base          la base où l'on va poser la carte
+     * @param j             le joueur à qui on pose une carte dans sa base
      */
     public void jouerCarte(int carte, char base, Joueur j) {
         assert(estDansLeJeu(carte));
@@ -173,10 +178,9 @@ public class Joueur {
 
 
     /**
-     * Créer une chaine de caractères comportant l'ensemble du jeu d'un joueur.
+     * Créer une chaîne de caractères comportant l'ensemble du jeu d'un joueur.
      *
-     * @return la chaine de caractères
-     *
+     * @return              la chaîne de caractères
      */
     public String afficherJeu(){
         StringBuilder sb = new StringBuilder();
@@ -188,20 +192,17 @@ public class Joueur {
         return sb.toString();
     }
 
+
     /**
-     * Créer une chaine de ractères comportant le nom du joueur, sa base,
+     * Créer une chaîne de caractères comportant le nom du joueur, sa base,
      * le nombre de carte de son jeu ainsi que le nombre de carte dans sa pioche.
      *
-     * @return la chaine de caractères
-     *
+     * @return              la chaîne de caractères
      */
     public String toString() {
         return nom + " ^["+ String.format("%02d", ascendant) + "]"
                 + " v[" + String.format("%02d", descendant) + "]"
                 + " (m" + jeu.size() + "p" + (pioche.getLastIdx() + 1) + ")";
     }
-
-
-
 
 }

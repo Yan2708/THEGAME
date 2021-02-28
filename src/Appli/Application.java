@@ -4,19 +4,22 @@ import Composantes.Joueur;
 import Composantes.Regles;
 import Composantes.Input;
 
+/**
+ * L'application agence chacune de nos composantes
+ * et permet de jouer au jeu The Game - le Duel.
+ *
+ * @author Yannick li
+ * @author Stefan Radovanovic
+ * @version 1, 2/27/2021
+ * */
 public class Application {
 
     /**
      * Affiche les informations des joueurs NORD et SUD ainsi que la main du joueur courant.
      *
-     * @param NORD
-     *                  le joueur NORD
-     *
-     * @param SUD
-     *                  le joueur SUD
-     *
-     * @param courant
-     *                  le joueur courant
+     * @param NORD          le joueur NORD
+     * @param SUD           le joueur SUD
+     * @param courant       le joueur courant
      * */
     private static void showGame(Joueur NORD, Joueur SUD, Joueur courant) {
         System.out.println(NORD);
