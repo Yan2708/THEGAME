@@ -18,6 +18,7 @@ public class Regles {
      * @param coups         les coups du joueurs, sous la forme d'un tableau de String
      * @param j1            le joueur qui joue les coups.
      * @param j2            le joueur qui recoit (ou non) les coups.
+     * @return              le nombre de carte piochées
      * */
     public static int jouerCoups(String[] coups,Joueur j1, Joueur j2) {
         boolean coupAdv = false;
