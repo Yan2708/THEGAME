@@ -19,7 +19,7 @@ public class Regles {
      * @param j1            le joueur qui joue les coups.
      * @param j2            le joueur qui recoit (ou non) les coups.
      * */
-    public static void jouerCoups(String[] coups,Joueur j1, Joueur j2) {
+    public static int jouerCoups(String[] coups,Joueur j1, Joueur j2) {
         boolean coupAdv = false;
         for (String coup: coups) {
             if(isCampEnnemie(coup)) {
@@ -28,7 +28,7 @@ public class Regles {
             }
             else j1.jouerCarte(Input.getCarte(coup), Input.getBase(coup));
         }
-        System.out.println(coups.length + " cartes posées, " + regleDePioche(coupAdv, j1) + " cartes piochées");
+        return regleDePioche(coupAdv, j1);
     }
 
 

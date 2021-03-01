@@ -47,7 +47,8 @@ public class Application {
                 coups = Input.decomposer(Input.getUsersLine());
             }
 
-            Regles.jouerCoups(coups, courant, passif);
+            int nbCartesPiochees = Regles.jouerCoups(coups, courant, passif);
+            System.out.println(coups.length + " cartes posées, " + nbCartesPiochees + " cartes piochées");
 
             //  permutation
             if(courant.equals(NORD)) {

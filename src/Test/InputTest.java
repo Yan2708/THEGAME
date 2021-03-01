@@ -15,7 +15,11 @@ public class InputTest {
     @Test
     public void testDecomposer() {
         String [] s = Input.decomposer("12v 39^ 46v’ 59^");
-
+        assertEquals(s[0], "12v");
+        assertEquals(s[1], "39^");
+        assertEquals(s[2], "46v’");
+        assertEquals(s[3], "59^");
+        assertEquals(s.length, 4);
     }
 
     /**
