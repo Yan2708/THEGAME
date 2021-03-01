@@ -14,7 +14,8 @@ public class InputTest {
      * */
     @Test
     public void testDecomposer() {
-        System.out.println(Arrays.toString(Input.decomposer("12v 39^ 46v’ 59^")));
+        String [] s = Input.decomposer("12v 39^ 46v’ 59^");
+
     }
 
     /**

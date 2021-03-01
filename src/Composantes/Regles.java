@@ -76,15 +76,15 @@ public class Regles {
             return false;
         if(receveur.equals(poseur)) {   //  si le joueur pose dans son camp
             if( base == 'v' )
-                return receveur.descendant > carte || (receveur.descendant + 10 == carte);    //  dizaine au dessus
+                return receveur.getDescendant() > carte || (receveur.getDescendant() + 10 == carte);    //  dizaine au dessus
             else if( base == '^')
-                return receveur.ascendant < carte || (receveur.ascendant - 10) == carte;    //  dizaine en dessous
+                return receveur.getAscendant() < carte || (receveur.getAscendant() - 10) == carte;    //  dizaine en dessous
         }
         else {  // camp adverse
             if( base == 'v')
-                return receveur.descendant < carte;
+                return receveur.getDescendant() < carte;
             else if( base == '^')
-                return receveur.ascendant > carte;
+                return receveur.getAscendant() > carte;
         }
         return false;
     }

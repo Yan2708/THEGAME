@@ -21,9 +21,9 @@ class ReglesTest {
         SUD.jeu.set(2, 46);
         SUD.jeu.set(3, 59);
         Regles.jouerCoups(Input.decomposer("12v 39^ 46v' 59^"), SUD, NORD);
-        assertEquals(SUD.descendant, 12);
-        assertEquals(SUD.ascendant, 59);
-        assertEquals(NORD.descendant, 46);
+        assertEquals(SUD.getDescendant(), 12);
+        assertEquals(SUD.getAscendant(), 59);
+        assertEquals(NORD.getDescendant(), 46);
     }
 
     /**
@@ -36,10 +36,10 @@ class ReglesTest {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
 
-        NORD.ascendant=30;      //  les bases sont mis à 30 pour une meilleur manipulation
-        NORD.descendant=30;     //
-        SUD.ascendant=30;       //
-        SUD.descendant=30;      //
+        NORD.setAscendant(30);      //  les bases sont mis à 30 pour une meilleur manipulation
+        NORD.setDescendant(30);     //
+        SUD.setAscendant(30);       //
+        SUD.setDescendant(30);      //
 
         SUD.jeu.set(0, 12);
         SUD.jeu.set(1, 39);
@@ -91,17 +91,17 @@ class ReglesTest {
         NORD.jeu.add(0,59);
         NORD.jeu.add(1,58);
 
-        NORD.ascendant=57;
-        NORD.descendant=2;
-        SUD.ascendant=1;
-        SUD.descendant=60;
+        NORD.setAscendant(57);
+        NORD.setDescendant(2);
+        SUD.setAscendant(1);
+        SUD.setDescendant(60);
         assertTrue(Regles.partieContinue(NORD, SUD, 0,false));
-        NORD.ascendant=58;
+        NORD.setAscendant(58);
         assertFalse(Regles.partieContinue(NORD, SUD, 0,false));
-        NORD.ascendant=49;
-        NORD.descendant=2;
-        SUD.ascendant=53;
-        SUD.descendant=9;
+        NORD.setAscendant(49);
+        NORD.setDescendant(2);
+        SUD.setAscendant(53);
+        SUD.setDescendant(9);
         SUD.jeu.add(0,34);
         SUD.jeu.add(1,44);
         SUD.jeu.add(2,38);
