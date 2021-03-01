@@ -47,10 +47,8 @@ public class Application {
                 coups = Input.decomposer(Input.getUsersLine());
             }
 
-            int nbCarteAvantCoup = courant.jeu.size();
-            Regles.jouerCoups(coups, courant, passif);
-            int nbCartePiochee = courant.jeu.size() - (nbCarteAvantCoup - coups.length);
-            System.out.println(coups.length + " cartes posées, " + nbCartePiochee + " cartes piochées");
+            int nbCartesPiochees = Regles.jouerCoups(coups, courant, passif);
+            System.out.println(coups.length + " cartes posées, " + nbCartesPiochees + " cartes piochées");
 
             //  permutation
             if(courant.equals(NORD)) {
@@ -67,6 +65,6 @@ public class Application {
         }
         showGame(NORD, SUD, courant);
 
-        System.out.println("partie finie, " + passif.nom + " a gagné");
+        System.out.println("partie finie, " + passif.getNom() + " a gagné");
     }
 }

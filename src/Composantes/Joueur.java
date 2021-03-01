@@ -19,11 +19,12 @@ public class Joueur {
 
     public static final int NB_CARTES_MAX = 6;  // nombre de cartes maximum dans le jeu
 
-    public String nom;  // nom du joueur
+
+    private String nom;  // nom du joueur
 
     public ArrayList<Integer> jeu;  // jeu du joueur
 
-    public int ascendant, descendant;   // base du joueur
+    private int ascendant, descendant;   // base du joueur
 
     private final PaquetDeCartes pioche;  // pioche du joueur
 
@@ -71,6 +72,55 @@ public class Joueur {
      */
     public Joueur clone() {
         return new Joueur(this);
+    }
+
+
+
+    /**
+     * getter du nom du joueur
+     *
+     * @return le nom du joueur
+     * */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * getter de la pile ascendante
+     *
+     * @return la valeur de la pile
+     * */
+    public int getAscendant() {
+        return ascendant;
+    }
+
+    /**
+     * setter de la pile ascendante
+     *
+     * @param ascendant
+     *              la nouvelle valeur de la pile
+     * */
+    public void setAscendant(int ascendant) {
+        this.ascendant = ascendant;
+    }
+
+    /**
+     * getter de la pile descendante
+     *
+     * @return la valeur de la pile
+     * */
+    public int getDescendant() {
+        return descendant;
+    }
+
+    /**
+     * setter de la pile descendante
+     *
+     * @param descendant
+     *              la nouvelle valeur de la pile
+     * */
+    public void setDescendant(int descendant) {
+        this.descendant = descendant;
     }
 
 

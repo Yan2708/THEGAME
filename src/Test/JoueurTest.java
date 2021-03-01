@@ -9,19 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class JoueurTest {
 
     /**
-     * Test laffichage du jeu du joueur.
-     *
-     * affichage attendu :
-     * cartes NORD { 09 08 44 47 49 43 }
-     *
-     * */
-    @Test
-    public void afficherJeu() {
-        Joueur NORD = new Joueur("NORD");
-        System.out.println(NORD.afficherJeu());
-    }
-
-    /**
      * Test l'affichage de toString et du constructeur.
      *
      * affichage attendu :
@@ -66,13 +53,13 @@ class JoueurTest {
     @Test
     public void testPiocherCarte(){
         Joueur NORD = new Joueur("NORD");
-        NORD.piocherCarte();
-        System.out.println( NORD.afficherJeu());
+        NORD.piocherCarte();;
+        assertTrue(NORD.jeu.size()==6);
         NORD.jeu.clear();
         NORD.piocherCarte();
-        System.out.println( NORD.afficherJeu());
+        assertTrue(NORD.jeu.size()==1);
         NORD.piocherCarte();
-        System.out.println( NORD.afficherJeu());
+        assertTrue(NORD.jeu.size()==2);
     }
 
     /**
@@ -101,8 +88,8 @@ class JoueurTest {
         Joueur NORD = new Joueur("NORD");
         Joueur DOPPELGANGER = NORD.clone();
         assertEquals(NORD.jeu, DOPPELGANGER.jeu);
-        assertEquals(NORD.ascendant, DOPPELGANGER.ascendant);
-        assertEquals(NORD.descendant, DOPPELGANGER.descendant);
+        assertEquals(NORD.getDescendant(), DOPPELGANGER.getDescendant());
+        assertEquals(NORD.getAscendant(), DOPPELGANGER.getAscendant());
         DOPPELGANGER.jeu.set(0,44);
         DOPPELGANGER.jouerCarte(44,'^');
         assertNotEquals(NORD.jeu, DOPPELGANGER.jeu);
@@ -141,8 +128,8 @@ class JoueurTest {
         NORD.jeu.set(1,34);
         System.out.println(NORD.afficherJeu());
         NORD.jouerCarte(23, 'v');
-        assertEquals(NORD.descendant, 23);
+        assertEquals(NORD.getDescendant(), 23);
         NORD.jouerCarte(34, '^', SUD);
-        assertEquals(SUD.ascendant, 34);
+        assertEquals(SUD.getAscendant(), 34);
     }
 }
