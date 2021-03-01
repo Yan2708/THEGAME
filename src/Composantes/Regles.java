@@ -13,14 +13,13 @@ public class Regles {
 
 
     /**
-     * Joue les coups d'un joueur.
+     * Joue les coups d'un joueur et pioche selon le coup.
      *
      * @param coups         les coups du joueurs, sous la forme d'un tableau de String
      * @param j1            le joueur qui joue les coups.
      * @param j2            le joueur qui recoit (ou non) les coups.
-     * @return              le nombre de carte piochées
      * */
-    public static int jouerCoups(String[] coups,Joueur j1, Joueur j2) {
+    public static void jouerCoups(String[] coups,Joueur j1, Joueur j2) {
         boolean coupAdv = false;
         for (String coup: coups) {
             if(isCampEnnemie(coup)) {
@@ -29,32 +28,27 @@ public class Regles {
             }
             else j1.jouerCarte(Input.getCarte(coup), Input.getBase(coup));
         }
-        return regleDePioche(coupAdv, j1);
+        regleDePioche(coupAdv, j1); // pioche les cartes selon les coups jouées
     }
 
 
     /**
-     *  Fait piocher un joueur les cartes selon si il a joué chez l'adversaire ou non.
+     *  Fait piocher au joueur les cartes selon si il a joué chez l'adversaire ou non.
+     *  - 2 cartes si aucun coup n'a été jouée chez l'adversaire
+     *  - rempli la main si un coup a été jouée chez l'adversaire
      *
      * @param jouerAd       true si le joueur joue chez l'adversaire
      * @param j             le joueur qui doit piocher
-     * @return              le nombre de carte piochées
      */
-    private static int regleDePioche(boolean jouerAd, Joueur j) {
-        int nbCartePioches = 0;
+    private static void regleDePioche(boolean jouerAd, Joueur j) {
         if (jouerAd) {                //pioche jusqu'à que sa main soit pleine
-            while (!j.jeuEstPlein() && !j.piocheEstVide()) {
+            while (!j.jeuEstPlein() && !j.piocheEstVide())
                 j.piocherCarte();
-                nbCartePioches++;
-            }
-        } else {                  // n'a joué que sur ses bases, pioche 2 cartes
-            for (int i = 0; i < 2; i++)
-                if (!j.jeuEstPlein() && !j.piocheEstVide()) {
-                    j.piocherCarte();
-                    nbCartePioches++;
-                }
         }
-        return nbCartePioches;
+        else                 // n'a joué que sur ses bases, pioche 2 cartes
+            for (int i = 0; i < 2; i++)
+                if (!j.jeuEstPlein() && !j.piocheEstVide())
+                    j.piocherCarte();
     }
 
 
@@ -101,8 +95,8 @@ public class Regles {
      * @param j1Bis         le joueur qui joue les coups
      * @param j2Bis         le joueur adverse
      * @return              si les coups sont valides ou non
-     * @see Joueur#clone()
-     * @see Input#isSyntaxValid(String[])
+     * @see                 Joueur#clone()
+     * @see                 Input#isSyntaxValid(String[])
      * */
     public static boolean areCoupsValid(String[] coups, Joueur j1Bis, Joueur j2Bis) {
 

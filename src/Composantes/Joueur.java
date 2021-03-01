@@ -94,15 +94,16 @@ public class Joueur {
         return ascendant;
     }
 
+
     /**
      * setter de la pile ascendante
      *
-     * @param ascendant
-     *              la nouvelle valeur de la pile
+     * @param ascendant         la nouvelle valeur de la pile
      * */
     public void setAscendant(int ascendant) {
         this.ascendant = ascendant;
     }
+
 
     /**
      * getter de la pile descendante
@@ -113,11 +114,11 @@ public class Joueur {
         return descendant;
     }
 
+
     /**
      * setter de la pile descendante
      *
-     * @param descendant
-     *              la nouvelle valeur de la pile
+     * @param descendant        la nouvelle valeur de la pile
      * */
     public void setDescendant(int descendant) {
         this.descendant = descendant;
