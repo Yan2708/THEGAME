@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Le jouer est une représentation de l'utilisateur.
+ * Le joueur est une représentation de l'utilisateur.
  * Il possède un nom ("NORD" ou "SUD").
  * Un jeu de cartes.
  * Une pile ascendante et descendante (la base).
