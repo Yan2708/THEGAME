@@ -15,6 +15,7 @@ import java.util.Scanner;
  * */
 public class Input {
 
+
     /**
      * Récupère l'entrée de l'uttilisateur, son coup.
      * Cette méthode utilise la classe Scanner qui couplé à un flux comme system.in
@@ -24,14 +25,11 @@ public class Input {
      * @return              un String contenant les coups du joueur.
      * @see                 Scanner
      * */
-    public static String getUsersLine() {
-        @SuppressWarnings("resource")
-        Scanner sc = new Scanner(System.in);
+    public static String getUsersLine(Scanner sc) {
         System.out.print("> ");
-        String s;
-        s = sc.nextLine();
-        return s;
+        return sc.nextLine();
     }
+
 
     /**
      * Décompose les différents coups d'un joueur.
@@ -46,6 +44,7 @@ public class Input {
     public static String[] decomposer(String UsersLine) {
         return UsersLine.split("\\s+");
     }
+
 
     /**
      * Vérifie le format d'un coup de l'utilisateur (non la sémantique).
@@ -70,6 +69,7 @@ public class Input {
         return true;
     }
 
+
     /**
      * Verifie si la syntaxe des coups est correcte.
      * Cette méthode utilise les méthodes précédente pour vérifier l'intégralité des coups de l'utilisateur.
@@ -88,6 +88,7 @@ public class Input {
         return true;
     }
 
+
     /**
      * Retourne la carte qui est joué dans la chaine de caractères.
      * Cette methode est à utiliser qu'après avoir vérifié que le coup est jouable.
@@ -103,6 +104,7 @@ public class Input {
         return Integer.parseInt(coup.substring(0, 2), 10); //   substring creer une sous chaine de caracteres
                                                                 //   parseInt renvoie un entier en base 10 (radix)
     }
+
 
     /**
      * Retourne dans quelle base le coup va être joué.

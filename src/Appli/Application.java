@@ -4,6 +4,8 @@ import Composantes.Joueur;
 import Composantes.Regles;
 import Composantes.Input;
 
+import java.util.Scanner;
+
 /**
  * L'application agence chacune de nos composantes
  * et permet de jouer au jeu The Game - le Duel.
@@ -27,6 +29,7 @@ public class Application {
         System.out.println(courant.afficherJeu());
     }
 
+
     public static void main(String[] args) {
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
@@ -34,17 +37,20 @@ public class Application {
         Joueur courant = NORD;      //  Références des objets joueurs
         Joueur passif = SUD;        //
 
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+
         while(Regles.partieContinue(courant, passif, 0,false)) {
 
             showGame(NORD, SUD, courant);
 
-            String[] coups = Input.decomposer(Input.getUsersLine());
+            String[] coups = Input.decomposer(Input.getUsersLine(sc));
 
             while(!(Input.isSyntaxValid(coups)
                     && Regles.areCoupsValid(coups, courant.clone(), passif.clone()))){
 
                 System.out.print("#");
-                coups = Input.decomposer(Input.getUsersLine());
+                coups = Input.decomposer(Input.getUsersLine(sc));
             }
 
             int nbCarteAvantCoup = courant.jeu.size();
@@ -63,11 +69,12 @@ public class Application {
             }
 
             if(Regles.partieFinie(passif)){
-                break;
+                break;  //  la partie se finit avant de laisser le prochain joueur jouer
             }
         }
         showGame(NORD, SUD, courant);
 
         System.out.println("partie finie, " + passif.getNom() + " a gagné");
+        sc.close();
     }
 }

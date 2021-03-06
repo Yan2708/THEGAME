@@ -55,11 +55,11 @@ public class PaquetDeCartes {
     }
 
 
-     /** Pioche la carte à l'indice donné dans le paquet.
-      *
-      * @param idx          l'indice de la carte voulu.
-      * @return             la carte piochée
-      * */
+    /** Pioche la carte à l'indice donné dans le paquet.
+     *
+     * @param idx           l'indice de la carte voulu.
+     * @return              la carte piochée
+     **/
     public int piocher(int idx) {
         assert(!estVide() && (idx >= 0 && idx <= paquetDeCartes.size()));
         int carte = paquetDeCartes.get(idx);

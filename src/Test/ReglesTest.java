@@ -75,8 +75,6 @@ class ReglesTest {
         assertTrue(Regles.partieFinie(NORD));
     }
 
-
-
     /**
      * test de la fonction partieContinue
      * */

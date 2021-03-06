@@ -75,7 +75,6 @@ public class Joueur {
     }
 
 
-
     /**
      * getter du nom du joueur
      *
@@ -84,6 +83,7 @@ public class Joueur {
     public String getNom() {
         return nom;
     }
+
 
     /**
      * getter de la pile ascendante
@@ -250,6 +250,7 @@ public class Joueur {
      *
      * @return              la chaîne de caractères
      */
+    @Override
     public String toString() {
         return nom + " ^["+ String.format("%02d", ascendant) + "]"
                 + " v[" + String.format("%02d", descendant) + "]"

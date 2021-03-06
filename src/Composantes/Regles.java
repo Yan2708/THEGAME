@@ -186,6 +186,7 @@ public class Regles {
         return false;
     }
 
+
     /**
      * Verifie si un coup joué est destiné au joueur adverse (à utiliser après estPosable)
      *
@@ -195,6 +196,7 @@ public class Regles {
         return coup.length() == 4; // si un coup constitue une chaine de 4 caracteres alors il doit etre
                                    // destiné à l'adversaire car il comprend une apostrophe. exemple : 34v' (4 char)
     }
+
 
     /**
      *  Verifie si le joueur a posé la totalité de ses cartes.
