@@ -40,7 +40,7 @@ public class Application {
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
 
-        while(Regles.partieContinue(courant, passif, 0,false)) {
+        while(Regles.partieContinue(courant.clone(), passif.clone(), 0,false)) {
 
             showGame(NORD, SUD, courant);
 

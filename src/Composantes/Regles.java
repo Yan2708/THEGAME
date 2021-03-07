@@ -139,18 +139,16 @@ public class Regles {
      * @see                 Joueur#clone()
      * */
     public static boolean partieContinue(Joueur j1, Joueur j2, int nb, boolean coupAdv){
-        Joueur j1Bis = j1.clone();
-        Joueur j2Bis = j2.clone();
         if(nb>=2)  //  si il y a au moins 2 coups à jouer
             return true;
-        for(int carte : j1Bis.jeu){
+        for(int carte : j1.jeu){
             // A chaque carte jouée
-            j1Bis = j1.clone();
-            j2Bis = j2.clone();
+            Joueur j1Bis = j1.clone();
+            Joueur j2Bis = j2.clone();
             //  la vérification commence en jouant les coups possible chez le joueur courant
             if(estPosable(carte, 'v', j1Bis, j1Bis)) {
-                j1Bis.jouerCarte(carte, 'v');
-                nb++;
+                    j1Bis.jouerCarte(carte, 'v');
+                    nb++;
                 if (partieContinue(j1Bis, j2Bis, nb, coupAdv))
                     return true;
             }
