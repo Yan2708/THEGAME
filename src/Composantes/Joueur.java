@@ -11,16 +11,16 @@ import java.util.Collections;
  * Un paquet de cartes, la pioche.
  * Il s'agit ici de manœuvrer le joueur en fonction de l'utilisateur et de ce qu'il décide.
  *
- * @author Yannick li
- * @author Stefan Radovanovic
- * @version 1, 2/27/2021
+ * @author      Yannick li
+ * @author      Stefan Radovanovic
+ * @version     1, 2/27/2021
  * */
 public class Joueur {
 
     public static final int NB_CARTES_MAX = 6;  // nombre de cartes maximum dans le jeu
 
 
-    private String nom;  // nom du joueur
+    public final String nom;  // nom du joueur
 
     public ArrayList<Integer> jeu;  // jeu du joueur
 
@@ -72,16 +72,6 @@ public class Joueur {
      */
     public Joueur clone() {
         return new Joueur(this);
-    }
-
-
-    /**
-     * getter du nom du joueur
-     *
-     * @return le nom du joueur
-     * */
-    public String getNom() {
-        return nom;
     }
 
 

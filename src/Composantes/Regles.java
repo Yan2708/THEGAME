@@ -5,9 +5,9 @@ package Composantes;
  * à chaque joueur et doivent être clairement énoncées à chacun d'eux avant le début de la partie.
  * Il s'agit ici de reguler la sémantique des coups de l'uttilisateur.
  *
- * @author Yannick li
- * @author Stefan Radovanovic
- * @version 1, 2/27/2021
+ * @author      Yannick li
+ * @author      Stefan Radovanovic
+ * @version     1, 2/27/2021
  * */
 public class Regles {
 
@@ -168,6 +168,7 @@ public class Regles {
                         return true;
                     else
                         coupAdv=false;
+                        nb--;
                 }
                 if(estPosable(carte, '^', j1Bis, j2Bis)) {
                     j1Bis.jouerCarte(carte, '^', j2Bis);
@@ -177,13 +178,12 @@ public class Regles {
                         return true;
                     else
                         coupAdv=false;
+                        nb--;
                 }
-            } else return false;
-
+            }
         }
         return false;
     }
-
 
     /**
      * Verifie si un coup joué est destiné au joueur adverse (à utiliser après estPosable)

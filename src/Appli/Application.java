@@ -74,7 +74,7 @@ public class Application {
         }
         showGame(NORD, SUD, courant);
 
-        System.out.println("partie finie, " + passif.getNom() + " a gagné");
+        System.out.println("partie finie, " + passif.nom + " a gagné");
         sc.close();
     }
 }

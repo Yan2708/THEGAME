@@ -9,9 +9,9 @@ import java.util.Scanner;
  * Ici, il s'agit de pouvoir récupérer les inputs de l'utilisateur et pouvoir les manipuler
  * sans affecter son expérience (avec des crashs ou assertions levées par exemple).
  *
- * @author Yannick li
- * @author Stefan Radovanovic
- * @version 1, 2/27/2021
+ * @author      Yannick li
+ * @author      Stefan Radovanovic
+ * @version     1, 2/27/2021
  * */
 public class Input {
 

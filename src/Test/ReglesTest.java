@@ -109,4 +109,24 @@ class ReglesTest {
         assertTrue(Regles.partieContinue(SUD, NORD, 0, false));
     }
 
+    /**
+     * Deuxieme test plus specifique de la methode partieContinue()
+     * */
+    @Test
+    public void testPartieContinue2() {
+        Joueur NORD = new Joueur("NORD");
+        Joueur SUD = new Joueur("SUD");
+        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
+        // avec des bases injouables
+        NORD.setAscendant(61);
+        NORD.setDescendant(0);
+        SUD.setAscendant(61);
+        SUD.setDescendant(0);
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
+        // avec un jeu vide
+        NORD.jeu.clear();
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
+    }
+
+
 }

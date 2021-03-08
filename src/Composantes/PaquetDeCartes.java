@@ -12,9 +12,9 @@ import java.util.Random;
  * la méthode utilisée est de faire en sorte de rendre piochable n'importe quelle carte
  * d'une ArrayList aléatoire, à la manière d'un paquet de carte que l'on aurait mélanger.
  *
- * @author Yannick li
- * @author Stefan Radovanovic
- * @version 1, 2/27/2021
+ * @author      Yannick li
+ * @author      Stefan Radovanovic
+ * @version     1, 2/27/2021
  * */
 public class PaquetDeCartes {
 
