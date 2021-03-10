@@ -17,21 +17,6 @@ public class Input {
 
 
     /**
-     * Récupère l'entrée de l'uttilisateur, son coup.
-     * Cette méthode utilise la classe Scanner qui couplé à un flux comme system.in
-     * permet d'extraire les informations données qui sont ensuite retourné dans un String.
-     * "> " est affiché pour correspondre aux normes d'affichages.
-     *
-     * @return              un String contenant les coups du joueur.
-     * @see                 Scanner
-     * */
-    public static String getUsersLine(Scanner sc) {
-        System.out.print("> ");
-        return sc.nextLine();
-    }
-
-
-    /**
      * Décompose les différents coups d'un joueur.
      * Cette méthode utilise la méthode Split de la classe String qui permet de séparer
      * une chaîne de caractères en fragment stocké par la suite dans un tableau de String,

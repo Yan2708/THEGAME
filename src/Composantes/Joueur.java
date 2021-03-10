@@ -37,7 +37,7 @@ public class Joueur {
     public Joueur(String n) {
         nom = n;
         pioche = new PaquetDeCartes();
-        // la pile ascendante est initialisée à 0 et la descendante à 60
+        // la pile ascendante est initialisée à 1 et la descendante à 60
         ascendant = pioche.piocher(0);
         descendant = pioche.piocher(pioche.getLastIdx());
         jeu = new ArrayList<>();
