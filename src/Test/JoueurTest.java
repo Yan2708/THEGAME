@@ -8,21 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 // test la classe joueur
 class JoueurTest {
 
-    /**
-     * Test l'affichage de toString et du constructeur.
-     *
-     * affichage attendu :
-     * NORD ^[01] v[60] (m6p52)
-     * SUD ^[01] v[60] (m6p52)
-     *
-     * */
-    @Test
-    public void testToString() {
-        Joueur NORD = new Joueur("NORD");
-        System.out.println(NORD.toString());
-        Joueur SUD = new Joueur("SUD");
-        System.out.println(SUD.toString());
-    }
 
     /**
      * Test si une carte est dans le jeu.
@@ -53,13 +38,13 @@ class JoueurTest {
     @Test
     public void testPiocherCarte(){
         Joueur NORD = new Joueur("NORD");
-        NORD.piocherCarte();;
-        assertTrue(NORD.jeu.size()==6);
+        NORD.piocherCarte();
+        assertEquals(NORD.jeu.size(), 6);
         NORD.jeu.clear();
         NORD.piocherCarte();
-        assertTrue(NORD.jeu.size()==1);
+        assertEquals(NORD.jeu.size(), 1);
         NORD.piocherCarte();
-        assertTrue(NORD.jeu.size()==2);
+        assertEquals(NORD.jeu.size(), 2);
     }
 
     /**
