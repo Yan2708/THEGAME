@@ -111,7 +111,6 @@ class JoueurTest {
         Joueur SUD = new Joueur("SUD");
         NORD.jeu.set(0, 23);
         NORD.jeu.set(1,34);
-        System.out.println(NORD.afficherJeu());
         NORD.jouerCarte(23, 'v');
         assertEquals(NORD.getDescendant(), 23);
         NORD.jouerCarte(34, '^', SUD);
