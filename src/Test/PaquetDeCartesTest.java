@@ -60,19 +60,19 @@ class PaquetDeCartesTest {
     }
 
     /**
-     * Test la pioche specifique (avec un indice donné).
+     * Test la pioche specifique (avec une carte donnée).
      * */
     @Test
-    public void testPiocheSpecifique()
+    public void testPiocheCarte()
     {
         PaquetDeCartes p1 = new PaquetDeCartes();
-        int i=0;
+        int i=1;
         while(!p1.estVide())
         {
-            int carte = p1.piocher(0);
-            assert(carte >=1 && carte < 61 && i+1==carte);
+            int carte = p1.piocher(i);
+            assertTrue(carte >=1 && carte <= 60);
             i++;
         }
-        assert(p1.estVide());
+        assertTrue(p1.estVide());
     }
 }

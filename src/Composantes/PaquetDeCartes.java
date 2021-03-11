@@ -55,15 +55,18 @@ public class PaquetDeCartes {
     }
 
 
-    /** Pioche la carte à l'indice donné dans le paquet.
+    /** Pioche une carte specifique dans le paquet de carte.
      *
-     * @param idx           l'indice de la carte voulu.
+     * @param carte         la carte choisie
      * @return              la carte piochée
+     * @see                 Integer#valueOf(int)
+     * @see                 IllegalArgumentException
      **/
-    public int piocher(int idx) {
-        assert(!estVide() && (idx >= 0 && idx <= paquetDeCartes.size()));
-        int carte = paquetDeCartes.get(idx);
-        paquetDeCartes.remove(idx);
+    public int piocher(int carte) throws IllegalArgumentException{
+        if(estVide() && paquetDeCartes.contains(carte))
+            throw new IllegalArgumentException("la carte n'est pas dans le paquet de carte !");
+
+        paquetDeCartes.remove(Integer.valueOf(carte));
         return carte;
     }
 

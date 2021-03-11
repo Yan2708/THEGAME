@@ -38,8 +38,8 @@ public class Joueur {
         nom = n;
         pioche = new PaquetDeCartes();
         // la pile ascendante est initialisée à 1 et la descendante à 60
-        ascendant = pioche.piocher(0);
-        descendant = pioche.piocher(pioche.getLastIdx());
+        ascendant = pioche.piocher(1);
+        descendant = pioche.piocher(60);
         jeu = new ArrayList<>();
         for(int i=0; i < NB_CARTES_MAX ; i++) // pioche le jeu du joueur
             piocherCarte();
