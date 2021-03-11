@@ -82,20 +82,28 @@ class ReglesTest {
     public void testPartieContinue(){
         Joueur NORD = new Joueur("NORD");
         Joueur SUD = new Joueur("SUD");
-        assertTrue(Regles.partieContinue(NORD, SUD, 0,false));
-
+        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
+        // avec des bases injouables
+        NORD.setAscendant(61);
+        NORD.setDescendant(0);
+        SUD.setAscendant(61);
+        SUD.setDescendant(0);
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
+        // avec un jeu vide
         NORD.jeu.clear();
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
+
         SUD.jeu.clear();
         NORD.jeu.add(0,59);
         NORD.jeu.add(1,58);
-
         NORD.setAscendant(57);
         NORD.setDescendant(2);
         SUD.setAscendant(1);
         SUD.setDescendant(60);
-        assertTrue(Regles.partieContinue(NORD, SUD, 0,false));
+        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
         NORD.setAscendant(58);
-        assertFalse(Regles.partieContinue(NORD, SUD, 0,false));
+        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0,false));
+        //cas spécifique
         NORD.setAscendant(49);
         NORD.setDescendant(2);
         SUD.setAscendant(53);
@@ -106,27 +114,11 @@ class ReglesTest {
         SUD.jeu.add(3,6);
         SUD.jeu.add(4,41);
         SUD.jeu.add(5,39);
-        assertTrue(Regles.partieContinue(SUD, NORD, 0, false));
+        assertTrue(Regles.partieContinue(SUD.clone(), NORD.clone(), 0, false));
+
+
     }
 
-    /**
-     * Deuxieme test plus specifique de la methode partieContinue()
-     * */
-    @Test
-    public void testPartieContinue2() {
-        Joueur NORD = new Joueur("NORD");
-        Joueur SUD = new Joueur("SUD");
-        assertTrue(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
-        // avec des bases injouables
-        NORD.setAscendant(61);
-        NORD.setDescendant(0);
-        SUD.setAscendant(61);
-        SUD.setDescendant(0);
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
-        // avec un jeu vide
-        NORD.jeu.clear();
-        assertFalse(Regles.partieContinue(NORD.clone(), SUD.clone(), 0, false));
-    }
 
 
 }
