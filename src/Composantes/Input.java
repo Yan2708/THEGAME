@@ -1,6 +1,5 @@
 package Composantes;
 
-import java.util.Scanner;
 
 /**
  * Les inputs sont les entrées données à notre programme, celles-ci sont indépendantes du programme.
